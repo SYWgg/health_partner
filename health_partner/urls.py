@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from accountapp.views import Home
+from health_partner.views import HomeView
 
 urlpatterns = [
-    path('', Home, name='home'),
+    path('', HomeView.as_view(), name='home'),
 
     path('admin/', admin.site.urls),
     path('account/', include('accountapp.urls')),

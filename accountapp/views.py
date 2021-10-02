@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse_lazy, reverse
@@ -13,10 +12,6 @@ from accountapp.decorators import account_ownership_required
 from accountapp.forms import ChangeInfoForm
 
 has_ownership = [account_ownership_required, login_required]
-
-
-def Home(request):
-    return render(request, 'base.html')
 
 
 class SignupView(CreateView):
