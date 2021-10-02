@@ -14,11 +14,3 @@ class User(models.Model):
 
     class Meta:
         db_table = 'users'
-
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
-    # on_delete => 연결된 User이 없어질때 CASECADE된다.(사라진다)
-
-    image = models.ImageField(upload_to='image/', null=True)
-    nickname = models.CharField(max_length=20, unique=True, null=True)

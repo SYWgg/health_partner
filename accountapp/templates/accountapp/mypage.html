@@ -1,3 +1,60 @@
-{% extends base.html %}
-{% load bootstrap4 %}
+{% extends 'base.html' %}
 
+{% block content %}
+
+    <div>
+        <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+
+            {% if target_user.profile %}
+
+                <img src="{{ target_user.profile.image.url }}" alt=""
+                     style="height: 13rem; width: 13rem; box-shadow : 2px 2px 5px #ccc; border-radius: 20rem; margin-bottom: 2rem; object-fit: cover;">
+
+                <h2 style="font-family: 'NanumSquareRoundOTFB'">
+                    {{ target_user.profile.nickname }}
+                    {% if target_user == user %}
+                        <a class="material-icons"
+                           style="box-shadow: 2px 2px 5px #ccc; border-radius: 10rem; padding: .5rem"
+                           href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                            edit
+                        </a>
+                    {% endif %}
+                </h2>
+                <h5 style="margin-bottom: 3rem">
+                    {{ target_user.profile.messsage }}
+                </h5>
+
+            {% else %}
+                {% if target_user == user %}
+                    <h2 style="font-family: 'NanumSquareRoundOTFB'">
+                        프로필을 설정하세요.
+                    </h2>
+                    <a class="material-icons"
+                       style="box-shadow: 2px 2px 5px #ccc; border-radius: 10rem; padding: .5rem"
+                       href="{% url 'profileapp:create' %}">
+                        create
+                    </a>
+                {% else %}
+                    <h3 style="font-family: 'NanumSquareRoundOTFB'">
+                        로그인이 필요합니다.
+                    </h3>
+                {% endif %}
+            {% endif %}
+
+
+            {% if target_user == user %}
+                <a class="material-icons"
+                   style="box-shadow: 2px 2px 5px #ccc; border-radius: 10rem; padding: .5rem"
+                   href="{% url 'accountapp:change_info' pk=user.pk %}">
+                    manage_accounts
+                </a>
+                <a class="material-icons"
+                   style="box-shadow: 2px 2px 5px red; border-radius: 10rem; padding: .5rem"
+                   href="{% url 'accountapp:delete' pk=user.pk %}">
+                    person_remove
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
