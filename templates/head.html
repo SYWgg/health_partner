@@ -1,0 +1,46 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HP</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+
+    {#  GOOGLE FONTS LINK  #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+
+    {# DEFAULT CSS LINK #}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <style>
+        @font-face {
+            font-family: 'NanumSquareRoundOTFB';
+            src: local('NanumSquareRoundOTFB'),
+            url("{% static 'fonts/NanumSquareRoundOTFB.otf' %}") format("opentype");
+        }
+        @font-face {
+            font-family: 'NanumSquareRoundOTFEB';
+            src: local('NanumSquareRoundOTFEB'),
+            url("{% static 'fonts/NanumSquareRoundOTFEB.otf' %}") format("opentype");
+        }
+        @font-face {
+            font-family: 'NanumSquareRoundOTFL';
+            src: local('NanumSquareRoundOTFL'),
+            url("{% static 'fonts/NanumSquareRoundOTFL.otf' %}") format("opentype");
+        }
+        @font-face {
+            font-family: 'NanumSquareRoundOTFR';
+            src: local('NanumSquareRoundOTFR'),
+            url("{% static 'fonts/NanumSquareRoundOTFR.otf' %}") format("opentype");
+        }
+    </style>
+</head>
