@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 # Create your views here.
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.views.generic.list import MultipleObjectMixin
@@ -21,7 +21,8 @@ class SignupView(CreateView):
     template_name = 'accountapp/signup.html'
 
 
-class MypageView(DetailView, MultipleObjectMixin):
+
+class MypageView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/mypage.html'
