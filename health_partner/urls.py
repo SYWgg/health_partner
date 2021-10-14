@@ -21,9 +21,12 @@ from django.urls import path, include
 from health_partner.views import HomeView
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
+                  path('', HomeView.as_view(), name='home'),
 
-    path('admin/', admin.site.urls),
-    path('account/', include('accountapp.urls')),
-    path('profile/', include('profileapp.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('admin/', admin.site.urls),
+                  path('account/', include('accountapp.urls')),
+                  path('profile/', include('profileapp.urls')),
+                  path('board/', include('boardapp.urls')),
+                  #path('trainer/', include('trainerapp.urls')),
+
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

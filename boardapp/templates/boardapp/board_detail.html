@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div>
+        <h1>제목 : {{ target_board.title }}</h1>
+        <h3>
+            작성자 : {{ target_board.writer.profile.nickname }}
+        </h3>
+
+        <hr>
+
+        <div class="text-left">
+            <img style="width:50%; border-radius: 2rem; margin: 2rem 0;"
+                 src="{{ target_board.image.url }}" alt="">
+            {{ target_board.content | safe }}
+        </div>
+        {% if target_board.writer == user %}
+            <a href="{% url 'boardapp:update' pk=target_board.pk %}"
+               class="btn btn-primary rounded-pill col-3">
+                Update
+            </a>
+            <a href="{% url 'boardapp:delete' pk=target_board.pk %}"
+               class="btn btn-danger rounded-pill col-3">
+                Delete
+            </a>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
