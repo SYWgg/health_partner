@@ -5,7 +5,7 @@ from django.db import models
 # Create your models here.
 
 class Board(models.Model):
-    writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='작성자')
+    writer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name='작성자')
 
     title = models.CharField(max_length=100, verbose_name='제목')
     content = models.TextField(verbose_name='내용')

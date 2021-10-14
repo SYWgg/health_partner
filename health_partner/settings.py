@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'accountapp',
     'profileapp',
-    #'trainerapp',
+    'trainerapp',
     'boardapp',
     'commentapp'
 ]

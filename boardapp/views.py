@@ -61,4 +61,4 @@ class BoardListView(ListView):
     model = Board
     context_object_name = 'board_list'
     template_name = 'boardapp/board_list.html'
-    paginate_by = 8
+    paginate_by = 10
