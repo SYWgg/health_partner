@@ -24,9 +24,10 @@ urlpatterns = [
                   path('', HomeView.as_view(), name='home'),
 
                   path('admin/', admin.site.urls),
-                  path('account/', include('accountapp.urls')),
-                  path('profile/', include('profileapp.urls')),
-                  path('board/', include('boardapp.urls')),
+                  path('accounts/', include('accountapp.urls')),
+                  path('profiles/', include('profileapp.urls')),
+                  path('boards/', include('boardapp.urls')),
                   #path('trainer/', include('trainerapp.urls')),
+                  path('comments/', include('commentapp.urls')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

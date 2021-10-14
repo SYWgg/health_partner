@@ -10,6 +10,7 @@ from django.views.generic.edit import FormMixin, UpdateView, DeleteView
 from boardapp.decorators import board_ownership_required
 from boardapp.forms import BoardCreationForm
 from boardapp.models import Board
+from commentapp.forms import CommentCreationForm
 
 
 @method_decorator(login_required, 'get')
@@ -29,9 +30,9 @@ class BoardCreateView(CreateView):
     def get_success_url(self):
         return reverse('boardapp:detail', kwargs={'pk': self.object.pk})
 
-class BoardDetailView(DetailView):
+class BoardDetailView(DetailView, FormMixin):
     model = Board
-    #form_class = CommentCreationForm
+    form_class = CommentCreationForm
     context_object_name = 'target_board'
     template_name = 'boardapp/board_detail.html'
 

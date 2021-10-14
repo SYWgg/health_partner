@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'profileapp',
     #'trainerapp',
     'boardapp',
+    'commentapp'
 ]
 
 MIDDLEWARE = [
