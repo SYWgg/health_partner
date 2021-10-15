@@ -15,7 +15,9 @@ import TrainerCardIteration from './TrainerCardIteration';
 
 const App = () => {
   // return <TrainerCard/>;
-  return <TrainerCardIteration/>;
+  return (
+    <TrainerCardIteration/>;
+  )
 };
 
 export default App;
