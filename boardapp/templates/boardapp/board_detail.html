@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div style="text-align: center">
+        <h1>제목 : {{ target_board.title }}</h1>
+        <h3>
+            작성자 : {{ target_board.writer.profile.nickname }}
+            <br>
+            {{ target_board.created_at }}
+        </h3>
+
+        <hr>
+        <div class="text-center">
+            {% if target_board.image %}
+                <img style="width:50%; border-radius: 2rem; margin: 2rem 0;"
+                     src="{{ target_board.image.url }}" alt="">
+            {% endif %}
+            {{ target_board.content | safe }}
+        </div>
+        {% if target_board.writer == user %}
+            <a href="{% url 'boardapp:update' pk=target_board.pk %}"
+               class="btn btn-primary rounded-pill col-3">
+                Update
+            </a>
+            <a href="{% url 'boardapp:delete' pk=target_board.pk %}"
+               class="btn btn-danger rounded-pill col-3">
+                Delete
+            </a>
+        {% endif %}
+
+        <hr>
+
+            {% for comment in target_board.comment.all %}
+                {% include 'commentapp/comment_detail.html' with comment=comment %}
+            {% endfor %}
+
+
+            {% include 'commentapp/comment_create.html' with board=target_board %}
+
+    </div>
+
+{% endblock %}

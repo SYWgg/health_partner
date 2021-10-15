@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'bootstrap4',
     'accountapp',
     'profileapp',
+    'trainerapp',
+    'boardapp',
+    'commentapp'
 ]
 
 MIDDLEWARE = [
@@ -109,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'UTC'
 

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">아이디</th>
+                    <th scope="col">작성일</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for board in board_list %}
+                    <tr>
+                        <td><a href="{% url "boardapp:detail" pk=board.pk %}">{{ board.id }}</a></td>
+                        <td><a href="{% url "boardapp:detail" pk=board.pk %}">{{ board.title }}</a></td>
+                        <td>{{ board.writer.profile.nickname }}</td>
+                        <td>{{ board.created_at }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="text-align: center">
+        <a href="{% url 'boardapp:create' %}" class="btn btn-primary rounded-pill col-3 mt-3 mb-3 px-2">
+            글쓰기
+        </a>
+    </div>
+{% endblock %}
