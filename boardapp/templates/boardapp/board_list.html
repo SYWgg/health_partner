@@ -1,35 +1,146 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
 
+{#{% block content %}#}
+{#    <div class="row mt-5">#}
+{#        <div class="col-12">#}
+{#            <table class="table">#}
+{#                <thead class="thead-dark">#}
+{#                <tr>#}
+{#                    <th scope="col">#</th>#}
+{#                    <th scope="col">제목</th>#}
+{#                    <th scope="col">아이디</th>#}
+{#                    <th scope="col">작성일</th>#}
+{#                </tr>#}
+{#                </thead>#}
+{##}
+{#                <tbody>#}
+{#                {% for board in board_list %}#}
+{#                    <tr>#}
+{#                        <td><a href="{% url "boardapp:detail" pk=board.pk %}">{{ board.id }}</a></td>#}
+{#                        <td><a href="{% url "boardapp:detail" pk=board.pk %}">{{ board.title }}</a></td>#}
+{#                        <td>{{ board.writer.profile.nickname }}</td>#}
+{#                        <td>{{ board.created_at }}</td>#}
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#                </tbody>#}
+{#            </table>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div style="text-align: center">#}
+{#        <a href="{% url 'boardapp:create' %}" class="btn btn-primary rounded-pill col-3 mt-3 mb-3 px-2">#}
+{#            글쓰기#}
+{#        </a>#}
+{#    </div>#}
+{#{% endblock %}#}
+
 {% block content %}
+
+<div class="container">
     <div class="row mt-5">
         <div class="col-12">
-            <table class="table">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">아이디</th>
-                    <th scope="col">작성일</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                {% for board in board_list %}
-                    <tr>
-                        <td><a href="{% url "boardapp:detail" pk=board.pk %}">{{ board.id }}</a></td>
-                        <td><a href="{% url "boardapp:detail" pk=board.pk %}">{{ board.title }}</a></td>
-                        <td>{{ board.writer.profile.nickname }}</td>
-                        <td>{{ board.created_at }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            <h2 style="font-weight: bold; text-align: center">Q & A</h2>
         </div>
     </div>
-    <div style="text-align: center">
-        <a href="{% url 'boardapp:create' %}" class="btn btn-primary rounded-pill col-3 mt-3 mb-3 px-2">
-            글쓰기
-        </a>
+    <br>
+    <div>
+        <table class="table table-sm table-hover">
+            <thead class="thead-dark" style="border-top: 1px solid #dee2e6;">
+            <tr class="text-center">
+                <th style="font-weight: bold; font-size: 16px;">제목</th>
+                <th style="font-weight: bold; font-size: 16px;">작성자</th>
+                <th style="font-weight: bold; font-size: 16px;">등록일</th>
+                <th style="font-weight: bold; font-size: 16px;">조회수</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for board in board_list %}
+                <tr class="text-center" style="cursor: pointer;" onclick="location.href='{% url "boardapp:detail" pk=board.pk %}'">
+                    <td style="width: 50%; font-weight: 600;" class="text-end">{{ board.title }}</td>
+                    <td style="font-weight: 500;">{{ board.writer.profile.nickname }}</td>
+                    <td style="font-weight: 500;">{{ board.created_at }}</td>
+                    <td style="font-weight: 500;">1<!-- hits --></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
+
+    <div style="margin-top: 30px;">
+        <form action="" method="GET">
+            <div class="col">
+                <div style="float: right;" class="form-row">
+                    <div class="form-row">
+                        <div class="col" style="margin-top: 10px;">
+                            <select name="type" style="width: 6em;" class="custom-select custom-select-sm">
+                                <option value="all">전체</option>
+                                <option value="title_content">제목+내용</option>
+                                <option value="title">제목</option>
+                                <option value="content">내용</option>
+                                <option value="writer">작성자</option>
+                            </select>
+                        </div>
+                        <div class="col" style="margin-top: 10px;">
+                            <input type="text" name="q" value="" class="form-control form-control-sm"
+                                   style="width: 15em;" placeholder="검색어를 입력해주세요">
+                        </div>
+                        <div class="col" style="margin-top: 10px;">
+                            <button class="btn btn-sm btn-secondary" type="submit" id="search_btn">검색</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div>
+            <div style="margin-top: 30px;">
+                <button class="btn btn-primary btn-sm" style="margin-top: 10px;" onclick="location.href='{% url 'boardapp:create' %}'">글쓰기
+                </button>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+{##}
+{#    <div class="col-md-offset-6">#}
+{#        <ul class="pagination justify-content-center ">#}
+{#            <!--  이전페이지가 있다면-->#}
+{#            <li class="page-item">#}
+{#                <a href="#" class="page-link" tabindex="1">이전</a>#}
+{#                <!-- href="?page={{ page_obj.previous_page_number }} -->#}
+{#            </li>#}
+{#            <!--  이전페이지가 없다면-->#}
+{#            <!--  <li class="page-item disabled">-->#}
+{#            <!--    <a href="#" class="page-link" tabindex="-1">이전</a>-->#}
+{#            <!--  </li>-->#}
+{##}
+{#            <li class="page-item">#}
+{#                <a href="#" class="page-link">1</a>#}
+{#            </li>#}
+{#            <li class="page-item">#}
+{#                <a href="#" class="page-link">2</a>#}
+{#            </li>#}
+{#            <li class="page-item">#}
+{#                <a href="#" class="page-link">3</a>#}
+{#            </li>#}
+{##}
+{#            <!--  페이지 숫자 나타내는 거-->#}
+{#            <!--  {% for page in page_range %}-->#}
+{#                <!--  <li class="page-item {% if page == page_obj.number %} activate {% endif %}">-->#}
+{#                <!--    <a class="page-link" href="?page={{ page }}">{{ page }}</a>-->#}
+{#                <!--  </li>-->#}
+{#                <!--  {% endfor %}-->#}
+{##}
+{#            <!--  다음페이지가 있다면-->#}
+{#            <li class="page-item">#}
+{#                <a href="#" class="page-link" tabindex="1">다음</a>#}
+{#                <!-- href="?page={{ page_obj.next_page_number }} -->#}
+{#            </li>#}
+{#            <!--  다음페이지가 없다면-->#}
+{#            <!--  <li class="page-item disabled">-->#}
+{#            <!--    <a href="#" class="page-link">다음</a>-->#}
+{#            <!--  </li>-->#}
+{##}
+{#        </ul>#}
+{#    </div>#}
+</div>
 {% endblock %}

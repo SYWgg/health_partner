@@ -12,7 +12,6 @@ from boardapp.forms import BoardCreationForm
 from boardapp.models import Board
 from commentapp.forms import CommentCreationForm
 
-
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class BoardCreateView(CreateView):
