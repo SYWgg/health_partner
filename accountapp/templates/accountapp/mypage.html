@@ -2,39 +2,67 @@
 
 {{% block content %}
 
-<div>
-    <section class="pt-4">
-        <div class="container px-lg-5">
-            <!-- Page Features-->
-            <div class="row gx-lg-5">
-
-                <div class="col-lg-6 col-xxl-4 mb-5">
-                    {% if target_user.profile %}
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <img src="{{ target_user.profile.image.url }}" alt=""
-                                     style="height: 10rem; width: 10rem; box-shadow : 2px 2px 5px #ccc; border-radius: 20rem; margin-bottom: 2rem; object-fit: cover;">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                        class="bi bi-collection"></i>
+    <div>
+        <section class="pt-4">
+            <div class="container px-lg-5">
+                <!-- Page Features-->
+                <div class="row gx-lg-5">
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        {% if target_user.profile %}
+                            <div class="card bg-light border-0 h-100">
+                                <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                    <img src="{{ target_user.profile.image.url }}" alt=""
+                                         style="height: 10rem; width: 10rem; box-shadow : 2px 2px 5px #ccc; border-radius: 20rem; margin-bottom: 2rem; object-fit: cover;">
+                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                            class="bi bi-collection"></i>
+                                    </div>
+                                    <h2>
+                                        {{ target_user.profile.nickname }}
+                                        {% if target_user == user %}
+                                            <a class="material-icons"
+                                               style="box-shadow: 2px 2px 5px #ccc; border-radius: 10rem; padding: .5rem"
+                                               href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                                                edit
+                                            </a>
+                                        {% endif %}
+                                    </h2>
+                                    <h5 style="margin-bottom: 3rem">
+                                        {{ target_user.profile.message }}
+                                    </h5>
+                                    <p class="mb-0"></p>
                                 </div>
-                                <h2>
-                                    {{ target_user.profile.nickname }}
-                                    {% if target_user == user %}
-                                        <a class="material-icons"
-                                           style="box-shadow: 2px 2px 5px #ccc; border-radius: 10rem; padding: .5rem"
-                                           href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                                            edit
-                                        </a>
-                                    {% endif %}
-                                </h2>
-                                <h5 style="margin-bottom: 3rem">
-                                    {{ target_user.profile.message }}
-                                </h5>
-                                <p class="mb-0"></p>
                             </div>
-                        </div>
-                    {% else %}
-                        {% if target_user == user %}
+                        {% else %}
+                            {% if target_user == user %}
+                                <div class="card bg-light border-0 h-100">
+                                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <span class="material-icons" style="font-size:100px">
+                                account_circle
+                                </span>
+                                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4">
+                                            <i
+                                                    class="bi bi-collection"></i></div>
+                                        <h2 class="fs-4 fw-bold">프로필을 설정하세요.
+                                            <a class="material-icons"
+                                               style="box-shadow: 2px 2px 5px #ccc; border-radius: 10rem; padding: .5rem"
+                                               href="{% url 'profileapp:create' %}">
+                                                create
+                                            </a>
+                                        </h2>
+                                        <p class="mb-0"></p>
+                                    </div>
+                                </div>
+
+                            {% else %}
+                                <h3>
+                                    로그인이 필요합니다.
+                                </h3>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <a href="">
                             <div class="card bg-light border-0 h-100">
                                 <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                             <span class="material-icons" style="font-size:100px">
@@ -42,129 +70,99 @@
                                 </span>
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
                                             class="bi bi-collection"></i></div>
-                                    <h2 class="fs-4 fw-bold">프로필을 설정하세요.
-                                        <a class="material-icons"
-                                           style="box-shadow: 2px 2px 5px #ccc; border-radius: 10rem; padding: .5rem"
-                                           href="{% url 'profileapp:create' %}">
-                                            create
-                                        </a>
-                                    </h2>
-                                    <p class="mb-0"></p>
+                                    <h2 class="fs-4 fw-bold">등록한 트레이너</h2>
+                                    <p class="mb-0">1:1 문의하기</p>
                                 </div>
                             </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-xxl-4 mb-5">
+                        <a href="">
+                            <div class="card bg-light border-0 h-100">
+                                <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                            class="bi bi-cloud-download"></i></div>
+                                    <h2 class="fs-4 fw-bold" style="font-size: 1.5rem">개인 유형 검사</h2>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
 
-                        {% else %}
-                            <h3>
-                                로그인이 필요합니다.
-                            </h3>
+                    <div class="col-lg-3 col-xxl-4 mb-5">
+                        <a href="">
+                            <div class="card bg-light border-0 h-100">
+                                <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                            class="bi bi-collection"></i></div>
+                                    <h2 class="fs-4 fw-bold" style="font-size: 1.5rem">라이브 PT</h2>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-xxl-4 mb-5">
+                        <a href="">
+                            <div class="card bg-light border-0 h-100">
+                                <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                            class="bi bi-cloud-download"></i></div>
+                                    <h2 class="fs-4 fw-bold" style="font-size: 1.5rem">나의 질문 내역</h2>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-xxl-4 mb-5">
+                        {% if target_user == user %}
+
+                            <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                        class="bi bi-card-heading"></i></div>
+                                <h2 class="fs-4 fw-bold" style="font-size: 1.5rem">개인정보 수정</h2>
+                                <div class="col-lg-1.5 col-xxl-4 mb-5" style="">
+                                    <a class="material-icons"
+                                       style="box-shadow: 2px 2px 5px #ccc; border-radius: 10rem; padding: .5rem"
+                                       href="{% url 'accountapp:change_info' pk=user.pk %}">
+                                        manage_accounts
+                                    </a>
+                                    <a class="material-icons"
+                                       style="box-shadow: 2px 2px 3px red; border-radius: 10rem; padding: .5rem"
+                                       href="{% url 'accountapp:delete' pk=user.pk %}">
+                                        person_remove
+                                    </a>
+                                </div>
+                            </div>
                         {% endif %}
-                    {% endif %}
-                </div>
-
-                <div class="col-lg-6 col-xxl-4 mb-5">
-                    <a href="">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                            <span class="material-icons" style="font-size:100px">
-                                account_circle
-                                </span>
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                        class="bi bi-collection"></i></div>
-                                <h2 class="fs-4 fw-bold">등록한 트레이너</h2>
-                                <p class="mb-0">1:1 문의하기</p>
-                            </div>
                         </div>
-                    </a>
-                </div>
+                    </div>
 
-                <div class="col-lg-3 col-xxl-4 mb-5">
-                    <a href="">
+
+                    <div class="col-lg-12 col-xxl-4 mb-5">
                         <div class="card bg-light border-0 h-100">
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                        class="bi bi-cloud-download"></i></div>
-                                <h2 class="fs-4 fw-bold" style="font-size: 1.5rem">개인 유형 검사</h2>
+                                        class="bi bi-code"></i></div>
+                                <h2 class="fs-4 fw-bold">오늘의 식단</h2>
+                                <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem,
+                                    magnam.</p>
                             </div>
                         </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-xxl-4 mb-5">
-                    <a href="">
+                    </div>
+                    <div class="col-lg-12 col-xxl-4 mb-5">
                         <div class="card bg-light border-0 h-100">
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                        class="bi bi-collection"></i></div>
-                                <h2 class="fs-4 fw-bold" style="font-size: 1.5rem">라이브 PT</h2>
+                                        class="bi bi-patch-check"></i></div>
+                                <h2 class="fs-4 fw-bold">즐겨찾기 한 영상</h2>
+                                <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate,
+                                    praesentium.</p>
                             </div>
                         </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-xxl-4 mb-5">
-                    <a href="">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                        class="bi bi-cloud-download"></i></div>
-                                <h2 class="fs-4 fw-bold" style="font-size: 1.5rem">나의 질문 내역</h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-xxl-4 mb-5">
-                    {% if target_user == user %}
-
-                        <div class="card bg-light border-0 h-100">
-                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                    class="bi bi-card-heading"></i></div>
-                            <h2 class="fs-4 fw-bold" style="font-size: 1.5rem">개인정보 수정</h2>
-                            <div class="col-lg-1.5 col-xxl-4 mb-5" style="">
-                                <a class="material-icons"
-                                   style="box-shadow: 2px 2px 5px #ccc; border-radius: 10rem; padding: .5rem"
-                                   href="{% url 'accountapp:change_info' pk=user.pk %}">
-                                    manage_accounts
-                                </a>
-                                <a class="material-icons"
-                                   style="box-shadow: 2px 2px 3px red; border-radius: 10rem; padding: .5rem"
-                                   href="{% url 'accountapp:delete' pk=user.pk %}">
-                                    person_remove
-                                </a>
-                            </div>
-                        </div>
-                    {% endif %}
                     </div>
                 </div>
-                </a>
             </div>
-        </div>
-
-
-        <div class="col-lg-12 col-xxl-4 mb-5">
-            <div class="card bg-light border-0 h-100">
-                <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                            class="bi bi-code"></i></div>
-                    <h2 class="fs-4 fw-bold">오늘의 식단</h2>
-                    <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem,
-                        magnam.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12 col-xxl-4 mb-5">
-            <div class="card bg-light border-0 h-100">
-                <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                            class="bi bi-patch-check"></i></div>
-                    <h2 class="fs-4 fw-bold">즐겨찾기 한 영상</h2>
-                    <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate,
-                        praesentium.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 
 {% endblock %}
