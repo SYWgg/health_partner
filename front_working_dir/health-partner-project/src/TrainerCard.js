@@ -8,11 +8,12 @@ import { CardActionArea } from '@mui/material';
 
 export default function TrainerCard() {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    // default: 345
+    <Card sx={{ maxWidth: 280 }}> 
       <CardActionArea>
         <CardMedia
           component="img"
-          height="280"
+          height="210"
           image={require('./static/images/cards/User-Profile-PNG-Image.png').default}
           alt="trainer image"
         />

@@ -16,7 +16,10 @@ import TrainerCardIteration from './TrainerCardIteration';
 const App = () => {
   // return <TrainerCard/>;
   return (
-    <TrainerCardIteration/>;
+    <div>
+      
+      <TrainerCardIteration/>
+    </div>
   )
 };
 
