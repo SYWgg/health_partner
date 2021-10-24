@@ -1,6 +1,7 @@
 let containers = [];
 let newDiv;
 let interval = 0;
+let flag = 0;
 containers = document.querySelectorAll("div.container");
 containers.forEach(container => {
     newDiv = document.createElement("div");
@@ -23,23 +24,15 @@ containers.forEach(container => {
 
         if (interval >= 2) {
             interval = 2;
-        } else {
+        } else if ((flag % 2) == 1) {
             interval += 1;  
         }
-        
+
+        flag += 1;
     }
     console.log("2");
 })
 
-
-// if (containers[0].parentNode == document.getElementsByTagName("nav")[0]) {
-//     console.log(Array.isArray(containers));
-//     let containersArray = Array.from(containers);   // converts NodeList to Array
-//     containersArray.shift();
-//     console.log(containersArray);
-// }
-// containersArray[0].createElement("span");
-// containersArray[0].classList.add('animate__animated', 'animate__fadeInUp');
 console.log("end");
 
 function sleep(ms) {
