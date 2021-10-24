@@ -123,12 +123,12 @@
                                 <div class="col-lg-1.5 col-xxl-4 mb-5" style="">
                                     <a class="material-icons"
                                        style="box-shadow: 2px 2px 5px #ccc; border-radius: 10rem; padding: .5rem"
-                                       href="{% url 'accountapp:change_info' pk=user.pk %}">
+                                       href="{% url 'accountapp:password_update' %}">
                                         manage_accounts
                                     </a>
                                     <a class="material-icons"
                                        style="box-shadow: 2px 2px 3px red; border-radius: 10rem; padding: .5rem"
-                                       href="{% url 'accountapp:delete' pk=user.pk %}">
+                                       href="{% url 'accountapp:account_delete' %}">
                                         person_remove
                                     </a>
                                 </div>
