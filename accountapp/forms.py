@@ -188,9 +188,6 @@ class TrainerRegisterForm(UserCreationForm):
 
 # 일반인 회원가입 폼
 class RegisterForm(UserCreationForm):
-    is_trainer = forms.ChoiceField(choices=IS_TRAINER_CHOICES, label='트레이너/일반인', widget=forms.Select(
-        attrs={'class': 'form-control'}),
-                                   )
 
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
