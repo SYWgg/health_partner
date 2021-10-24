@@ -23,9 +23,12 @@ html {
 
 .container {
     /* width: 940px; */
-    max-width: 980px;
+    /* max-width: 980px; */
 }
 
+body > div.container, body > div > div.container {
+    max-width: 900px;
+}
 /* #container {
     width: 1000px;
 } */

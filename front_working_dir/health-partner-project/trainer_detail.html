@@ -20,7 +20,17 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
       rel="stylesheet"
     />
-    <link href="base.css" rel="stylesheet" type="text/css">
+    <!-- AnimateCSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />  
+    <!-- base CSS -->
+    <link rel="stylesheet" href="base.css" type="text/css">
+    <!-- Container Animation -->
+    <!-- 한 번 실행. -->
+    <script type="module" src="containerEffect.mjs"></script>
+    <script type="module">import './containerEffect.mjs';</script>
   </head>
 
   <body>
@@ -36,8 +46,7 @@
                     alt=""
                     loading="lazy"
                     style="margin-top: -1px;"
-                    width="100"
-                    height="38"
+                    width="60"
                 />
             </a>
 
@@ -92,181 +101,28 @@
 
     <!-- heading -->
     <div class="container">
-        <h2><strong>트레이너 리스트</strong></h2>
+        <h2><strong>트레이너 상세정보</strong></h2>
     </div>
 
-    <!-- cards -->
     <div class="container">
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-
-        <div class="col">
-          <div class="card h-100">
-            <div
-              class="bg-image hover-overlay ripple"
-              data-mdb-ripple-color="light"
-            >
-              <img
-                src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
-                class="card-img-top"
-                alt="..."
-              />
-              <a href="#!">
-                <div
-                  class="mask"
-                  style="background-color: rgba(251, 251, 251, 0.15)"
-                ></div>
-              </a>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-              </div>
-            </div>
-          </div>
+      <div class="card mb-3">
+        <img
+          src="https://mdbootstrap.com/img/new/slides/041.jpg"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in to additional
+            content. This content is a little bit longer.
+          </p>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
         </div>
-
-        <div class="col">
-          <div class="card h-100">
-            <div
-              class="bg-image hover-overlay ripple"
-              data-mdb-ripple-color="light"
-            >
-              <img
-                src="https://mdbootstrap.com/img/new/standard/city/042.jpg"
-                class="card-img-top"
-                alt="..."
-              />
-              <a href="#!">
-                <div
-                  class="mask"
-                  style="background-color: rgba(251, 251, 251, 0.15)"
-                ></div>
-              </a>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card h-100">
-            <div
-              class="bg-image hover-overlay ripple"
-              data-mdb-ripple-color="light"
-            >
-              <img
-                src="https://mdbootstrap.com/img/new/standard/city/043.jpg"
-                class="card-img-top"
-                alt="..."
-              />
-              <a href="#!">
-                <div
-                  class="mask"
-                  style="background-color: rgba(251, 251, 251, 0.15)"
-                ></div>
-              </a>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card h-100">
-            <div
-              class="bg-image hover-overlay ripple"
-              data-mdb-ripple-color="light"
-            >
-              <img
-                src="https://mdbootstrap.com/img/new/standard/city/044.jpg"
-                class="card-img-top"
-                alt="..."
-              />
-              <a href="#!">
-                <div
-                  class="mask"
-                  style="background-color: rgba(251, 251, 251, 0.15)"
-                ></div>
-              </a>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div
-    class="modal fade"
-    id="trainer_detail_1"
-    data-mdb-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="trainer_detail_1Label"
-    aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="trainer_detail_1Label">Modal title</h5>
-                <button
-                type="button"
-                class="btn-close"
-                data-mdb-dismiss="modal"
-                aria-label="Close"
-                ></button>
-            </div>
-            <div class="modal-body">...</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                Close
-                </button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- pagination -->
-    <div class="d-flex justify-content-center">
-        <nav aria-label="Page navigation" style="align-items: center;">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+      </div>
+    </div>  
 
     <!-- MDB -->
     <script
