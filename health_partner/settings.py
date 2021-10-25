@@ -44,11 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
-    'accountapp',
-    'profileapp',
-    'trainerapp',
-    'boardapp',
-    'commentapp'
+    'accountapp.apps.AccountappConfig',
+    'profileapp.apps.ProfileappConfig',
+    'trainerapp.apps.TrainerappConfig',
+    'boardapp.apps.BoardappConfig',
+    'commentapp.apps.CommentappConfig',
 ]
 
 MIDDLEWARE = [
@@ -135,8 +135,11 @@ STATICFILES_DIRS = [
 
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = reverse_lazy('home')
-LOGOUT_REDIRECT_URL = reverse_lazy('home')
+LOGOUT_REDIRECT_URL = '/'
+AUTH_USER_MODEL = "accountapp.User"       # 커스텀 인증 모델
+
 
 MEDIA_URL = '/media/'
 
