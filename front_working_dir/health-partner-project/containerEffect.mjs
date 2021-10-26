@@ -24,7 +24,7 @@ containers.forEach(container => {
 
         if (interval >= 2) {
             interval = 2;
-        } else if ((flag % 2) == 1) {
+        } else if ((flag % 3) == 1) {
             interval += 1;  
         }
 
