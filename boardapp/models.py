@@ -14,11 +14,15 @@ class Board(models.Model):
     image = models.ImageField(upload_to='board/', null=True, blank=True)
     hits = models.PositiveIntegerField(verbose_name='조회수', default=0)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="최종수정일")
 
     def __str__(self):
         return self.title
-    
+
+    @property
+    def update_counter(self):
+        self.hits = self.hits + 1
+        self.save()
+
     class Meta:
         db_table = 'Q&A게시판'
         verbose_name = 'Q&A게시판'

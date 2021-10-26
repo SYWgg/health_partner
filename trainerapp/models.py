@@ -18,4 +18,3 @@ class Trainer(models.Model):
     career = models.TextField(null=False, verbose_name="트레이너 경력")
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="최종수정일")
