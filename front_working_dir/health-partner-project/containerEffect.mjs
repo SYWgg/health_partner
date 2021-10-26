@@ -22,13 +22,13 @@ containers.forEach(container => {
             newDiv.append(childNode);
         })
 
-        if (interval >= 2) {
-            interval = 2;
-        } else if ((flag % 3) == 1) {
-            interval += 1;  
-        }
+        // if (interval >= 2) {
+        //     interval = 2;
+        // } else if ((flag % 3) == 1) {
+        //     interval += 1;  
+        // }
 
-        flag += 1;
+        // flag += 1;
     }
     console.log("2");
 })
