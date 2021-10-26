@@ -2,42 +2,129 @@
 {% load bootstrap4 %}
 
 {% block content %}
-    <div style="text-align: center">
-        <h1>제목 : {{ target_board.title }}</h1>
-        <h3>
-            작성자 : {{ target_board.writer.profile.nickname }}
-            <br>
-            {{ target_board.created_at }}
-        </h3>
+    <div class="container">
+    <div class="row-mt-5">
+        <div class="col-12">
+            <div class="card" style="width: 100%; background-color: ghostwhite">
+                <div style="text-align: center">
+                    <div class="card-header">
+                        <strong style="font-size: 2rem; float:left;">{{ target_board.title }}</strong>
+                        <span style="float:right;">{{ target_board.created_at|date:'Y.m.d. H:i' }}</span>
 
-        <hr>
-        <div class="text-center">
-            {% if target_board.image %}
-                <img style="width:50%; border-radius: 2rem; margin: 2rem 0;"
-                     src="{{ target_board.image.url }}" alt="">
-            {% endif %}
-            {{ target_board.content | safe }}
+                        <span style="display: none">{{ target_board.update_counter }}</span>
+                        <!--작성자, 조회수-->
+                        <div><br><br>
+                            <div style="float:left;">작성자 : {{ target_board.writer.profile.nickname }}</div>
+
+                            <span style="float:right;">조회수 : {{ target_board.hits }}</span>
+                        </div>
+                        <br>
+                    </div>
+                    <!--내용-->
+                    <div class="card-body" style="min-height: 400px; color:black;">
+                        <div class="text-center" style="height: min-content">
+                            <div>
+                                {% if target_board.image %}
+                                    <img style="width:40%; border-radius: 2rem; margin: 2rem 0;"
+                                         src="{{ target_board.image.url }}" alt="">
+                                {% endif %}
+                            </div>
+                            <div style="text-align: left;">
+                                {{ target_board.content | safe }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <form>
+                        {% if target_board.writer == user %}
+                            <a href="{% url 'boardapp:delete' pk=target_board.pk %}"
+                               class="btn btn-danger rounded-pill col-1 row-1" style="float: right; margin: 16px;">
+                                Delete
+                            </a>
+                            <a href="{% url 'boardapp:update' pk=target_board.pk %}"
+                               class="btn btn-primary rounded-pill col-1 row-1" style="float: right; margin: 16px;">
+                                Update
+                            </a>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
         </div>
-        {% if target_board.writer == user %}
-            <a href="{% url 'boardapp:update' pk=target_board.pk %}"
-               class="btn btn-primary rounded-pill col-3">
-                Update
-            </a>
-            <a href="{% url 'boardapp:delete' pk=target_board.pk %}"
-               class="btn btn-danger rounded-pill col-3">
-                Delete
-            </a>
-        {% endif %}
-
-        <hr>
-
-            {% for comment in target_board.comment.all %}
-                {% include 'commentapp/comment_detail.html' with comment=comment %}
-            {% endfor %}
+    </div>
+    <hr>
+    <div style="margin: 1rem">
+        {% for comment in target_board.comment.all %}
+            {% include 'commentapp/comment_detail.html' with comment=comment %}
+        {% endfor %}
 
 
-            {% include 'commentapp/comment_create.html' with board=target_board %}
-
+        {% include 'commentapp/comment_create.html' with board=target_board %}
     </div>
 
+
+
 {% endblock %}
+
+
+{#{% extends "base.html" %}#}
+{#{% load bootstrap4 %}#}
+{##}
+{#{% block mobileView %}#}
+{#    <meta name="viewport" content="width=800, user-scalable=yes">#}
+{#{% endblock %}#}
+{##}
+{#{% block contents %}#}
+{#    <br><br><br>#}
+{#    <div class="container">#}
+{#        <div class="row-mt-5">#}
+{#            <div class="col-12">#}
+{#                <!--본문-->#}
+{#                <div class="card" style="width: 100%;">#}
+{#                    <!--제목,분류,작성일-->#}
+{#                    <div class="card-header">#}
+{#                        <strong style="font-size: 18px;">{{ target_board.title }}</strong>#}
+{#                        <span style="float:right;">{{ target_board.created_at|date:'Y.m.d. H:i' }}</span>#}
+{#                    </div>#}
+{#                    <div class="card-body" style="min-height: 400px; color:black;">#}
+{#                        <!--작성자, 조회수-->#}
+{#                        <div>#}
+{#                            <span><i class="fas fa-user-edit"></i>&nbsp;작성자 : {{ target_board.writer }}</span>#}
+{#                            <span style="float:right;">조회수 : {{ target_board.hits }}</span>#}
+{#                        </div>#}
+{#                        <hr>#}
+{#                        <!--내용-->#}
+{#                        <div>#}
+{#                            {{ target_board.content | safe }}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <br>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#                <br>#}
+{#                <div class="text-right" style="margin-top:-15px;">#}
+{#                    {% if board_auth or request.user.level == '0' %}#}
+{#                        <button class="btn btn-sm" id="detail_btn"#}
+{#                                onclick="location.href='/board/{{ board.id }}/edit/'">수정#}
+{#                        </button>#}
+{#                        <button class="btn btn-sm" id="detail_btn" data-toggle="modal" data-target="#delete_modal">삭제#}
+{#                        </button>#}
+{#                        <button class="btn btn-sm" id="detail_btn" onclick="location.href='/board/'">목록으로</button>#}
+{#                    {% elif request.user.level == '1' %}#}
+{#                        <button class="btn btn-sm" id="detail_btn" data-toggle="modal" data-target="#delete_modal">삭제#}
+{#                        </button>#}
+{#                        <button class="btn btn-sm" id="detail_btn" onclick="location.href='/board/'">목록으로</button>#}
+{#                    {% else %}#}
+{#                        <button class="btn btn-sm" id="detail_btn" onclick="location.href='/board/'">목록으로</button>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{##}
+{##}
+{#{% endblock %}#}
