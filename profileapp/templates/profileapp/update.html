@@ -9,6 +9,10 @@
         </div>
         <form action="{% url 'profileapp:update' pk=target_profile.pk %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            {% if target_profile %}
+                <img src="{{ target_profile.image.url }}" alt=""
+                    style="height: 10rem; width: 10rem; box-shadow : 2px 2px 5px #ccc; border-radius: 20rem; margin-bottom: 2rem; object-fit: cover;">
+            {% endif %}
             {% bootstrap_form form %}
             <input type="submit" class="btn btn-dark rounded-pill col-4 mt-3">
         </form>

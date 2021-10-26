@@ -1,8 +1,10 @@
-from django.contrib.auth.models import User
+
 from django.db import models
 
 
 # Create your models here.
+from accountapp.models import User
+
 
 class Trainer(models.Model):
     trainer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='트레이너')
@@ -16,4 +18,3 @@ class Trainer(models.Model):
     career = models.TextField(null=False, verbose_name="트레이너 경력")
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="최종수정일")

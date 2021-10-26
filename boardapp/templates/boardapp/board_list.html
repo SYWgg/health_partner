@@ -36,111 +36,183 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row mt-5">
-        <div class="col-12">
-            <h2 style="font-weight: bold; text-align: center">Q & A</h2>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 style="font-weight: bold; text-align: center">Q & A</h2>
+            </div>
         </div>
-    </div>
-    <br>
-    <div>
-        <table class="table table-sm table-hover">
-            <thead class="thead-dark" style="border-top: 1px solid #dee2e6;">
-            <tr class="text-center">
-                <th style="font-weight: bold; font-size: 16px;">제목</th>
-                <th style="font-weight: bold; font-size: 16px;">작성자</th>
-                <th style="font-weight: bold; font-size: 16px;">등록일</th>
-                <th style="font-weight: bold; font-size: 16px;">조회수</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            {% for board in board_list %}
-                <tr class="text-center" style="cursor: pointer;" onclick="location.href='{% url "boardapp:detail" pk=board.pk %}'">
-                    <td style="width: 50%; font-weight: 600;" class="text-end">{{ board.title }}</td>
-                    <td style="font-weight: 500;">{{ board.writer.profile.nickname }}</td>
-                    <td style="font-weight: 500;">{{ board.created_at }}</td>
-                    <td style="font-weight: 500;">1<!-- hits --></td>
+        <br>
+        <div>
+            <table class="table table-sm table-hover">
+                <thead class="thead-dark" style="border-top: 1px solid #dee2e6;">
+                <tr class="text-center">
+                    <th style="font-weight: bold; font-size: 16px;">제목</th>
+                    <th style="font-weight: bold; font-size: 16px;">작성자</th>
+                    <th style="font-weight: bold; font-size: 16px;">등록일</th>
+                    <th style="font-weight: bold; font-size: 16px;">조회수</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                </thead>
 
-    <div style="margin-top: 30px;">
-        <form action="" method="GET">
-            <div class="col">
-                <div style="float: right;" class="form-row">
-                    <div class="form-row">
-                        <div class="col" style="margin-top: 10px;">
-                            <select name="type" style="width: 6em;" class="custom-select custom-select-sm">
-                                <option value="all">전체</option>
-                                <option value="title_content">제목+내용</option>
-                                <option value="title">제목</option>
-                                <option value="content">내용</option>
-                                <option value="writer">작성자</option>
-                            </select>
-                        </div>
-                        <div class="col" style="margin-top: 10px;">
-                            <input type="text" name="q" value="" class="form-control form-control-sm"
-                                   style="width: 15em;" placeholder="검색어를 입력해주세요">
-                        </div>
-                        <div class="col" style="margin-top: 10px;">
-                            <button class="btn btn-sm btn-secondary" type="submit" id="search_btn">검색</button>
+                <tbody>
+                {% for board in board_list %}
+                    <tr class="text-center" style="cursor: pointer;"
+                        onclick="location.href='{% url "boardapp:detail" pk=board.pk %}'">
+                        <td style="width: 50%; font-weight: 600;" class="text-end">{{ board.title }}</td>
+                        <td style="font-weight: 500;">{{ board.writer.profile.nickname }}</td>
+                        <td style="font-weight: 500;">{{ board.created_at | date:'Y. m. d' }}</td>
+                        <td style="font-weight: 500;">{{ board.hits }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <form action="" method="GET">
+                <div class="col">
+                    <div style="float: right;" class="form-row">
+                        <div class="form-row">
+                            <div class="col" style="margin-top: 10px;">
+                                <select name="type" style="width: 6em;" class="custom-select custom-select-sm">
+                                    <option value="all">전체</option>
+                                    <option value="title_content">제목+내용</option>
+                                    <option value="title">제목</option>
+                                    <option value="content">내용</option>
+                                </select>
+                            </div>
+                            <div class="col" style="margin-top: 10px;">
+                                <input type="text" name="q" value="" class="form-control form-control-sm"
+                                       style="width: 15em;" placeholder="검색어를 입력해주세요">
+                            </div>
+                            <div class="col" style="margin-top: 10px;">
+                                <button class="btn btn-sm btn-secondary" type="submit" id="search_btn">검색</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
-        <div>
-            <div style="margin-top: 30px;">
-                <button class="btn btn-primary btn-sm" style="margin-top: 10px;" onclick="location.href='{% url 'boardapp:create' %}'">글쓰기
-                </button>
+            </form>
+            <div>
+                <div style="margin-top: 30px;">
+                    <a href="{% url 'boardapp:create' %}" style="color: white; background-color: #1f75d9;
+                    padding:8px 15px 8px 15px; border-radius: 2rem; margin: 3rem;">
+                        글쓰기</a>
+
+                </div>
             </div>
         </div>
+        <br><br><br>
+
+        <div style="display: flex; justify-content: center">
+            {% if is_paginated %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?type={{ type }}&q={{ q }}&page={{ page_obj.previous_page_number }}"
+                               tabindex="-1">이전</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">이전</a>
+                        </li>
+                    {% endif %}
+
+                    {% for page in page_range %}
+                        <li class="page-item {% if page == page_obj.number %} activate {% endif %}">
+                            <a class="page-link" href="?type={{ type }}&q={{ q }}&page={{ page }}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?type={{ type }}&q={{ q }}&page={{ page_obj.next_page_number }}">다음</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">다음</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
     </div>
-    <br><br><br>
-{##}
-{#    <div class="col-md-offset-6">#}
-{#        <ul class="pagination justify-content-center ">#}
-{#            <!--  이전페이지가 있다면-->#}
-{#            <li class="page-item">#}
-{#                <a href="#" class="page-link" tabindex="1">이전</a>#}
-{#                <!-- href="?page={{ page_obj.previous_page_number }} -->#}
-{#            </li>#}
-{#            <!--  이전페이지가 없다면-->#}
-{#            <!--  <li class="page-item disabled">-->#}
-{#            <!--    <a href="#" class="page-link" tabindex="-1">이전</a>-->#}
-{#            <!--  </li>-->#}
-{##}
-{#            <li class="page-item">#}
-{#                <a href="#" class="page-link">1</a>#}
-{#            </li>#}
-{#            <li class="page-item">#}
-{#                <a href="#" class="page-link">2</a>#}
-{#            </li>#}
-{#            <li class="page-item">#}
-{#                <a href="#" class="page-link">3</a>#}
-{#            </li>#}
-{##}
-{#            <!--  페이지 숫자 나타내는 거-->#}
-{#            <!--  {% for page in page_range %}-->#}
-{#                <!--  <li class="page-item {% if page == page_obj.number %} activate {% endif %}">-->#}
-{#                <!--    <a class="page-link" href="?page={{ page }}">{{ page }}</a>-->#}
-{#                <!--  </li>-->#}
-{#                <!--  {% endfor %}-->#}
-{##}
-{#            <!--  다음페이지가 있다면-->#}
-{#            <li class="page-item">#}
-{#                <a href="#" class="page-link" tabindex="1">다음</a>#}
-{#                <!-- href="?page={{ page_obj.next_page_number }} -->#}
-{#            </li>#}
-{#            <!--  다음페이지가 없다면-->#}
-{#            <!--  <li class="page-item disabled">-->#}
-{#            <!--    <a href="#" class="page-link">다음</a>-->#}
-{#            <!--  </li>-->#}
-{##}
-{#        </ul>#}
-{#    </div>#}
-</div>
 {% endblock %}
+
+{##}
+{#{% block content %}#}
+{#    {% if q %}#}
+{#        <h5>'{{ q }}' 검색 결과입니다.</h5>#}
+{#    {% endif %}#}
+{#    <table>#}
+{#        <thead>#}
+{#        <tr class="text-center">#}
+{#            <th>번호</th>#}
+{#            <th>제목</th>#}
+{#            <th>작성자</th>#}
+{#            <th>등록일</th>#}
+{#            <th>조회수</th>#}
+{#        </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% if board_list %}#}
+{#            {% for board in board_list %}#}
+{#                <tr class="text-center">#}
+{#                    <td>{{ board.id }}</td>#}
+{#                    <td>{{ board.title|truncatechars:30 }}</td>#}
+{#                    <td>{{ board.writer }}</td>#}
+{#                    <td>{{ board.created_at|date:'Y. m. d' }}</td>#}
+{#                    <td>{{ board.hits }}</td>#}
+{#                </tr>#}
+{#            {% endfor %}#}
+{#        {% else %}#}
+{#            {% if q %}          <!-- 검색어가 있어 q가 context로 넘어오면 검색결과가 없음 -->#}
+{#                <tr class="text-center">#}
+{#                    <td colspan="5">#}
+{#                        일치하는 검색 결과가 없습니다.#}
+{#                    </td>#}
+{#                </tr>#}
+{#            {% else %}          <!-- q가 없으면 검색어가 아니며 게시글이 존재하지 않으므로 게시글 미작성 -->#}
+{#                <tr class="text-center">#}
+{#                    <td colspan="5">#}
+{#                        작성된 게시글이 없습니다.#}
+{#                    </td>#}
+{#                </tr>#}
+{#            {% endif %}#}
+{#        {% endif %}#}
+{#        </tbody>#}
+{#    </table>#}
+{##}
+{#    {% if is_paginated %}#}
+{#        <ul class="pagination">#}
+{#            {% if page_obj.has_previous %}#}
+{#                <li class="page-item">#}
+{#                    <a class="page-link" href="?type={{ type }}&q={{ q }}&page={{ page_obj.previous_page_number }}"#}
+{#                       tabindex="-1">이전</a>#}
+{#                </li>#}
+{#            {% else %}#}
+{#                <li class="page-item disabled">#}
+{#                    <a class="page-link" href="#" tabindex="-1">이전</a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{##}
+{#            {% for page in page_range %}#}
+{#                <li class="page-item {% if page == page_obj.number %} activate {% endif %}">#}
+{#                    <a class="page-link" href="?type={{ type }}&q={{ q }}&page={{ page }}">{{ page }}</a>#}
+{#                </li>#}
+{#            {% endfor %}#}
+{##}
+{#            {% if page_obj.has_next %}#}
+{#                <li class="page-item">#}
+{#                    <a class="page-link"#}
+{#                       href="?type={{ type }}&q={{ q }}&page={{ page_obj.next_page_number }}">다음</a>#}
+{#                </li>#}
+{#            {% else %}#}
+{#                <li class="page-item disabled">#}
+{#                    <a class="page-link" href="#">다음</a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{#        </ul>#}
+{#    {% endif %}#}
+{#{% endblock %}#}
