@@ -24,13 +24,15 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />  
+    />
     <!-- base CSS -->
-    <link rel="stylesheet" href="base.css" type="text/css">
+    <link href="base.css" rel="stylesheet" type="text/css" />
     <!-- Container Animation -->
     <!-- 한 번 실행. -->
     <script type="module" src="containerEffect.mjs"></script>
-    <script type="module">import './containerEffect.mjs';</script>
+    <script type="module">
+      import "./containerEffect.mjs";
+    </script>
   </head>
 
   <body>
@@ -76,47 +78,49 @@
 
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#"> <!-- link something -->Q&A </a>
+              <a class="nav-link" href="{% url 'boardapp:list' %}">Q&A </a>
             </li>
           </ul>
 
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#"> <!-- link something -->트레이너 </a>
+              <a class="nav-link" href="{% url 'trainerapp:list' %}">트레이너 </a>
             </li>
           </ul>
 
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#"> <!-- link something -->헬스정보 </a>
+              <a class="nav-link" href="#">헬스정보 </a>
             </li>
           </ul>
-
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <!-- link something -->마이페이지
-              </a>
-            </li>
-          </ul>
-          <!-- Left links -->
-
-          <div class="d-flex align-items-center">
-            <button
-              type="button"
-              class="btn btn-link px-3 me-2"
-              data-mdb-toggle="modal"
-              data-mdb-target="#trainer_detail_1"
-            >
-              Login
-            </button>
-            <button type="button" class="btn btn-primary me-3">Sign up</button>
-            <a
+          {% if user.is_authenticated %}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  마이페이지
+                </a>
+              </li>
+            </ul>
+            <!-- Left links -->
+          {% else %}
+            <div class="d-flex align-items-center">
+              <button
+                type="button"
+                class="btn btn-link px-3 me-2"
+                data-mdb-toggle="modal"
+                data-mdb-target="#trainer_detail_1"
+                onclick=`location.href="{% url 'accountapp:login' %}?next={{ request.path }}"`
+              >
+                Login
+              </button>
+              <button type="button" class="btn btn-primary me-3" onclick=`location.href="{% url 'accountapp:agreement' %}"`>Sign up</button>
+          {% endif %}
+            <!-- <a
                         class="btn btn-dark px-3"
                         href="https://github.com/mdbootstrap/mdb-ui-kit"
                         role="button"
                         ><i class="fab fa-github"></i
-                        ></a>
+                        ></a> -->
           </div>
         </div>
         <!-- Collapsible wrapper -->
@@ -125,83 +129,17 @@
     </nav>
     <!-- Navbar -->
 
-    <!-- heading -->
-     <div class="container">
-      <h2><strong>트레이너 상세정보</strong></h2>
-    </div>
+    <div class="my-5"></div>
 
-    <div class="container">
-      <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">
-          With supporting text below as a natural lead-in to additional content.
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">
-          With supporting text below as a natural lead-in to additional content.
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-</div>
-      
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div class="col">
-        <div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img
-        src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
-        alt="..."
-        class="img-fluid"
-      />
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This is a wider card with supporting text below as a natural lead-in to
-          additional content. This content is a little bit longer.
-        </p>
-        <p class="card-text">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-      </div>
-    </div>
+    
+    <!-- Contents here -->
 
 
-      
-    </div>  
-
-    <div class="container">
-    <div
-      class="d-flex align-items-center justify-content-center"
-      style="height: 100px;"
-    >
-    <button type="button" class="btn btn-primary btn-rounded"><h5>라이브 PT 신청</h5></button>
-    </div>
-    </div>
 
     <div class="my-5"></div>
     <div class="container">
       <hr class="my-2" />
     </div>
-    
 
     <!-- footer -->
     <footer class="bg-white text-center text-lg-start">
@@ -212,6 +150,7 @@
           <!--Grid column-->
           <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
             <h5 class="text-uppercase">ABOUT</h5>
+
             <p>
               2021-2학기 졸업프로젝트 작품<br />
               팀명 : 코딩하는 헬린이<br />
@@ -253,9 +192,6 @@
     ></script>
 
     <!-- custom script -->
-    <script>
-
-    </script>
-
+    <script></script>
   </body>
 </html>
