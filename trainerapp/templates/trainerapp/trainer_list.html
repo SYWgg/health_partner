@@ -2,109 +2,119 @@
 {% load bootstrap4 %}
 
 {% block content %}
-    <div class="my-5"></div>
+    <article>
+        <div class="my-5"></div>
 
-    <!-- heading -->
-    <div class="container" style="text-align: center">
-        <h2><strong>트레이너 리스트</strong></h2>
-        <div style="margin-top: 30px; text-align: right">
-            <a href="{% url 'trainerapp:create' %}" style="color: white; background-color: #1f75d9;
-                    padding:8px 15px 8px 15px; border-radius: 2rem; margin: 3rem;">
-                트레이너 등록</a>
+        <!-- heading -->
+        <div style="text-align: center">
+            <h2><strong>트레이너 리스트</strong></h2>
 
         </div>
-    </div>
-    <div class="my-4"></div>
+        <div class="my-4"></div>
 
-    <!-- cards -->
-    <div class="container" style="max-width: 890px;">
-        <div class="row">
-            <div class="col-3">
+        <!-- cards -->
+        {% if trainer_list %}
+            <div class="container" style=" display: flex; flex-grow: 0; margin: 2px;">
                 {% for trainer in trainer_list %}
-                    <div class="card h-100">
-                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                            <img src="{{ trainer.img.url }}"
-                                 class="card-img-top"
-                                 alt="...">
-                            <a href="{% url "trainerapp:detail" pk=trainer.pk %}">
-                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
-                            </a>
-                            <div class="card-body">
-                                {#                            트레이너 이름#}
-                                <h5 class="card-title">{{ trainer.name }}</h5>
-                                {#                            트레이너 태그#}
-                                <p class="card-text">
-                                    {{ trainer.trainer_intro }}
-                                </p>
+                    <a href="{% url 'trainerapp:detail' pk=trainer.pk %}">
+                        <div class="card" style="margin:2rem;">
+                            {% include 'snippets/card.html' with trainer=trainer %}
+                            <div class="card-text" style="text-align: center; background-color: lightgray">
+                                {{ trainer.name }}
+                            </div>
+                        </div>
+
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+
+
+            <div style="text-align: center">
+                <h1>아직 등록된 트레이너가 없습니다.</h1>
+            </div>
+        {% endif %}
+
+        <div style="margin-top: 30px;">
+            <form action="" method="GET">
+                <div class="col">
+                    <div style="float: right;" class="form-row">
+                        <div class="form-row">
+                            <div class="col" style="margin-top: 10px;">
+                                <select name="type" style="width: 6em;" class="custom-select custom-select-sm">
+                                    <option value="all">전체</option>
+                                    <option value="name">이름</option>
+                                    <option value="trainer_intro">강사소개</option>
+                                    <option value="program_intro">프로그램</option>
+                                </select>
+                            </div>
+                            <div class="col" style="margin-top: 10px;">
+                                <input type="text" name="q" value="" class="form-control form-control-sm"
+                                       style="width: 15em;" placeholder="검색어를 입력해주세요">
+                            </div>
+                            <div class="col" style="margin-top: 10px;">
+                                <button class="btn btn-sm btn-secondary" type="submit" id="search_btn">검색</button>
                             </div>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+                </div>
+            </form>
+            <div>
+                <div style="margin-top: 30px;">
+                    <a href="{% url 'boardapp:create' %}" style="color: white; background-color: #1f75d9;
+                    padding:8px 15px 8px 15px; border-radius: 2rem; margin: 3rem;">
+                        글쓰기</a>
 
-    <!-- Modal -->
-
-    <div class="container">
-        <div
-                class="modal fade"
-                id="trainer_detail_1"
-                data-mdb-keyboard="false"
-                tabindex="-1"
-                aria-labelledby="trainer_detail_1Label"
-                aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="trainer_detail_1Label">Modal title</h5>
-                        <button
-                                type="button"
-                                class="btn-close"
-                                data-mdb-dismiss="modal"
-                                aria-label="Close">
-                        </button>
-                    </div>
-                    <div class="modal-body">...</div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-primary">Understood</button>
-                    </div>
                 </div>
             </div>
         </div>
 
+
+        <div style="margin-top: 30px; text-align: center">
+            <a href="{% url 'trainerapp:create' %}" style="color: white; background-color: #1f75d9;
+                    padding:8px 15px 8px 15px; border-radius: 2rem; margin: 3rem;">
+                트레이너 등록</a>
+        </div>
         <div class="my-5"></div>
 
-        <!-- pagination -->
-        <div class="container">
-            <div class="d-flex justify-content-center">
-                <nav aria-label="Page navigation" style="align-items: center;">
-                    <ul class="pagination">
+        <div style="display: flex; justify-content: center">
+            {% if is_paginated %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
+                            <a class="page-link"
+                               href="?type={{ type }}&q={{ q }}&page={{ page_obj.previous_page_number }}"
+                               tabindex="-1">이전</a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">이전</a>
                         </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <div class="my-5"></div>
-    <div class="container">
-        <hr class="my-2">
-    </div>
+                    {% endif %}
 
+                    {% for page in page_range %}
+                        <li class="page-item {% if page == page_obj.number %} activate {% endif %}">
+                            <a class="page-link" href="?type={{ type }}&q={{ q }}&page={{ page }}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?type={{ type }}&q={{ q }}&page={{ page_obj.next_page_number }}">다음</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">다음</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+        </div>
+        <div class="my-5"></div>
+        <div class="container">
+        </div>
+    </article>
 
 {% endblock %}

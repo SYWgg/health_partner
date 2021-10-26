@@ -2,35 +2,68 @@
 {% load bootstrap4 %}
 
 {% block content %}
-    <div class="container">
+    <div class="container mt-4 mb-4" style="text-align: center;">
         <h2><strong>트레이너 상세정보</strong></h2>
     </div>
 
     <div class="container">
         <div class="card mb-3">
-            <img
-                    src="https://mdbootstrap.com/img/new/slides/041.jpg"
-                    class="card-img-top"
-                    alt="..."
-            />
+            <img src="{{ target_trainer.img.url }}"
+                 style="height: 13rem; width: 13rem; box-shadow : 2px 2px 5px #ccc; border-radius: 20rem; margin: 3rem; object-fit: cover;"
+                 alt="{{ target_trainer.name }}"/>
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                    This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.
+                <h3 class="card-title" style="text-align: left; margin:2rem;">{{ target_trainer.name }} 트레이너 </h3>
+                <p class="card-text" style="text-align: left; margin : 2rem;">
+                <h4>강사 소개 : {{ target_trainer.trainer_intro }}</h4>
                 </p>
-                <!-- <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
-                </p> -->
+                <br>
+                <hr>
+                <br>
+                <p class="card-text">
+                <div class="card" style=" text-align: center; border: 1px solid black;background-color:whitesmoke"><h3>
+                    프로그램 소개</h3> <br><br>  <h4>{{ target_trainer.program_intro }}</h4></div>
+                </p>
+                <br>
+                <hr>
+                <br>
+                <p class="card-text">
+                <div class="card" style=" text-align: center;border: 1px solid black; background-color:white"><h3>가격표</h3> <br><br>
+                    <h4>{{ target_trainer.charge }}</h4></div>
+                </p>
+                <br>
+                <hr>
+                <br>
+                <p class="card-text">
+                <div class="card" style=" text-align: center;border: 1px solid black; background-color:white"><h3>트레이닝 시간</h3> <br><br>
+                    <h4>{{ target_trainer.training_time }}</h4></div>
+                </p>
+                <br>
+                <hr>
+                <br>
+                <p class="card-text">
+                <div class="card" style=" text-align: center;border: 1px solid black; background-color:white"><h3>트레이닝 경력</h3> <br><br>
+                    <h4>{{ target_trainer.career }}</h4></div>
+                </p>
             </div>
         </div>
     </div>
 
+
     <div class="container">
-        <div
-                class="d-flex align-items-center justify-content-center"
-                style="height: 100px;"
-        >
+        <form>
+            {% if target_trainer.trainer == user %}
+                <a href="{% url 'trainerapp:delete' pk=target_trainer.pk %}"
+                   class="btn btn-danger rounded-pill col-1 row-1" style="float: right; margin: 16px;">
+                    Delete
+                </a>
+                <a href="{% url 'trainerapp:update' pk=target_trainer.pk %}"
+                   class="btn btn-primary rounded-pill col-1 row-1" style="float: right; margin: 16px;">
+                    Update
+                </a>
+            {% endif %}
+        </form>
+        <div class="align-items-center justify-center"
+             style="height: 100px;">
             <button type="button" class="btn btn-primary btn-rounded"><h5>라이브 PT 신청</h5></button>
         </div>
     </div>
