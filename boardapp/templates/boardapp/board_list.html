@@ -58,7 +58,7 @@
                 {% for board in board_list %}
                     <tr class="text-center" style="cursor: pointer;"
                         onclick="location.href='{% url "boardapp:detail" pk=board.pk %}'">
-                        <td style="width: 50%; font-weight: 600;" class="text-end">{{ board.title }}</td>
+                        <td style="width: 50%; font-weight: 600;" class="text-center">{{ board.title }}</td>
                         <td style="font-weight: 500;">{{ board.writer.profile.nickname }}</td>
                         <td style="font-weight: 500;">{{ board.created_at | date:'Y. m. d' }}</td>
                         <td style="font-weight: 500;">{{ board.hits }}</td>

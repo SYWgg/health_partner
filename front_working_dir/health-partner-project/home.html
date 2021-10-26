@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <!-- AnimateCSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- base CSS -->
+    <link href="base.css" rel="stylesheet" type="text/css" />
+    <!-- Container Animation -->
+    <!-- 한 번 실행. -->
+    <script type="module" src="containerEffect.mjs"></script>
+    <script type="module">
+      import "./containerEffect.mjs";
+    </script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Container wrapper -->
+      <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand me-2" href="#">
+          <img
+            src="src/static/logo/hp.png"
+            height="16"
+            alt=""
+            loading="lazy"
+            style="margin-top: -1px"
+            width="60"
+          />
+        </a>
+
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarButtonsExample"
+          aria-controls="navbarButtonsExample"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+          <!-- Left links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <!-- link something -->
+              </a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#"> <!-- link something -->Q&A </a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#"> <!-- link something -->트레이너 </a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#"> <!-- link something -->헬스정보 </a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <!-- link something -->마이페이지
+              </a>
+            </li>
+          </ul>
+          <!-- Left links -->
+
+          <div class="d-flex align-items-center">
+            <button
+              type="button"
+              class="btn btn-link px-3 me-2"
+              data-mdb-toggle="modal"
+              data-mdb-target="#trainer_detail_1"
+            >
+              Login
+            </button>
+            <button type="button" class="btn btn-primary me-3">Sign up</button>
+            <!-- <a
+                        class="btn btn-dark px-3"
+                        href="https://github.com/mdbootstrap/mdb-ui-kit"
+                        role="button"
+                        ><i class="fab fa-github"></i
+                        ></a> -->
+          </div>
+        </div>
+        <!-- Collapsible wrapper -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+
+    <div class="my-5"></div>
+
+        <!-- heading -->
+    <div class="container">
+      <h2><strong>전문 트레이너</strong>와 함께 <strong>홈트레이닝</strong> 해보세요!</h2>
+    </div>
+    <div class="my-4"></div>
+
+    <!-- Cards -->
+        <!-- cards -->
+    <div class="container" style="max-width: 890px;">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <div class="col">
+          <div class="card h-100">
+            <div
+              class="bg-image hover-overlay ripple"
+              data-mdb-ripple-color="light"
+            >
+              <img
+                src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(251, 251, 251, 0.15)"
+                ></div>
+              </a>
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a longer card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100">
+            <div
+              class="bg-image hover-overlay ripple"
+              data-mdb-ripple-color="light"
+            >
+              <img
+                src="https://mdbootstrap.com/img/new/standard/city/042.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(251, 251, 251, 0.15)"
+                ></div>
+              </a>
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a longer card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100">
+            <div
+              class="bg-image hover-overlay ripple"
+              data-mdb-ripple-color="light"
+            >
+              <img
+                src="https://mdbootstrap.com/img/new/standard/city/043.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(251, 251, 251, 0.15)"
+                ></div>
+              </a>
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a longer card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <hr class="my-5">
+    </div>
+
+    <!-- heading -->
+    <div class="container">
+      <h2><strong>헬스</strong> 관련 <strong>최신 트렌드</strong>를 확인하세요!</h2>
+    </div>
+    <div class="my-4"></div>
+
+    <!-- Cards -->
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card">
+                  <!-- content here -->
+                  <img src="http://wordcloud.kr/d/img/2020/05/15904939957231930.png" alt="" class="src">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                  <img src="http://wordcloud.kr/d/img/2020/05/15904939957231930.png" alt="" class="src">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+      <hr class="my-5">
+    </div>
+
+    <!-- heading -->
+    <div class="container">
+      <h2><strong>추천 영상</strong></h2>
+    </div>
+    <div class="my-4"></div>
+
+    <!-- Cards -->
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card">
+                    <iframe height="300" src="https://www.youtube.com/embed/i7oF3ahx-fk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <iframe height="300" src="https://www.youtube.com/embed/i7oF3ahx-fk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="my-5"></div>
+    <div class="container">
+      <hr class="my-2" />
+    </div>
+
+    <!-- footer -->
+    <footer class="bg-white text-center text-lg-start">
+      <!-- Grid container -->
+      <div class="container p-4" style="max-width: 900px">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase">ABOUT</h5>
+
+            <p>
+              2021-2학기 졸업프로젝트 작품<br />
+              팀명 : 코딩하는 헬린이<br />
+              사용한 기술스택 : Django, Javascript, CSS, Nginx, Gunicorn,<br />
+              AWS, Docker, Bootstrap ...
+            </p>
+          </div>
+          <!--Grid column-->
+          <!--Grid column-->
+          <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+            <span style="text-align: center">
+              <h5 class="text-uppercase">MEMBERS</h5>
+              <p>
+                팀장 : 심예원<br />
+                팀원 : 문지환<br />
+                팀원 : 오예지<br />
+                팀원 : 신윤철
+              </p>
+            </span>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2021 Copyright:
+        <a class="text-dark" href="https://gachon.ac.kr/">Health Partner</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+    ></script>
+
+    <!-- custom script -->
+    <script>
+      document.querySelectorAll('.card').forEach((cardRipple) => {
+      new mdb.Ripple(cardRipple, { color: 'light' })
+       });
+    </script>
+  </body>
+</html>

@@ -2,5 +2,109 @@
 {% load bootstrap4 %}
 
 {% block content %}
+    <div class="my-5"></div>
+
+    <!-- heading -->
+    <div class="container" style="text-align: center">
+        <h2><strong>트레이너 리스트</strong></h2>
+        <div style="margin-top: 30px; text-align: right">
+            <a href="{% url 'trainerapp:create' %}" style="color: white; background-color: #1f75d9;
+                    padding:8px 15px 8px 15px; border-radius: 2rem; margin: 3rem;">
+                트레이너 등록</a>
+
+        </div>
+    </div>
+    <div class="my-4"></div>
+
+    <!-- cards -->
+    <div class="container" style="max-width: 890px;">
+        <div class="row">
+            <div class="col-3">
+                {% for trainer in trainer_list %}
+                    <div class="card h-100">
+                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                            <img src="{{ trainer.img.url }}"
+                                 class="card-img-top"
+                                 alt="...">
+                            <a href="{% url "trainerapp:detail" pk=trainer.pk %}">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                            </a>
+                            <div class="card-body">
+                                {#                            트레이너 이름#}
+                                <h5 class="card-title">{{ trainer.name }}</h5>
+                                {#                            트레이너 태그#}
+                                <p class="card-text">
+                                    {{ trainer.trainer_intro }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+
+    <div class="container">
+        <div
+                class="modal fade"
+                id="trainer_detail_1"
+                data-mdb-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="trainer_detail_1Label"
+                aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="trainer_detail_1Label">Modal title</h5>
+                        <button
+                                type="button"
+                                class="btn-close"
+                                data-mdb-dismiss="modal"
+                                aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body">...</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-5"></div>
+
+        <!-- pagination -->
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                <nav aria-label="Page navigation" style="align-items: center;">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="my-5"></div>
+    <div class="container">
+        <hr class="my-2">
+    </div>
+
 
 {% endblock %}

@@ -56,6 +56,6 @@ class TrainerDeleteView(DeleteView):
 
 class TrainerListView(ListView):
     model = Trainer
-    context_object_name = 'Trainer_list'
+    context_object_name = 'trainer_list'
     template_name = 'trainerapp/trainer_list.html'
     paginate_by = 8
