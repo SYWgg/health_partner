@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'trainerapp.apps.TrainerappConfig',
     'boardapp.apps.BoardappConfig',
     'commentapp.apps.CommentappConfig',
+    'videoapp.apps.VideoappConfig',
 ]
 
 MIDDLEWARE = [

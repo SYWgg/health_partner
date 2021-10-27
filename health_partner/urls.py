@@ -29,5 +29,6 @@ urlpatterns = [
                   path('boards/', include('boardapp.urls')),
                   path('trainers/', include('trainerapp.urls')),
                   path('comments/', include('commentapp.urls')),
+                  path('videos/', include('videoapp.urls')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
