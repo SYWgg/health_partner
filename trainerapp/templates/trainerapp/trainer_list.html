@@ -2,5 +2,104 @@
 {% load bootstrap4 %}
 
 {% block content %}
+    <div class="container">
+        <div class="my-5"></div>
 
+        <!-- heading -->
+        <div style="text-align: center; margin: 3rem">
+            <h2><strong>트레이너 리스트</strong></h2>
+        </div>
+
+        <!-- cards -->
+        {% if trainer_list %}
+            <div class="container" style=" flex-flow: row wrap; text-align: left; max-width: 100%">
+                {% for trainer in trainer_list %}
+                    <a style="display: inline-block" href="{% url 'trainerapp:detail' pk=trainer.pk %}">
+                        <div class="item" style="margin:36px; border-radius: 1rem">
+                            {% include 'snippets/card.html' with trainer=trainer %}
+                            <div class="item" style="text-align: center; background-color: lightgray">
+                                {{ trainer.name }}
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+
+
+            <div style="text-align: center">
+                <h1>아직 등록된 트레이너가 없습니다.</h1>
+            </div>
+        {% endif %}
+
+        <div style="margin-top: 30px;">
+            <form action="" method="GET">
+                <div class="col">
+                    <div style="float: right;" class="form-row">
+                        <div class="form-row">
+                            <div class="col" style="margin-top: 10px;">
+                                <select name="type" style="width: 6em;" class="custom-select custom-select-sm">
+                                    <option value="all">전체</option>
+                                    <option value="name">이름</option>
+                                    <option value="trainer_intro">강사소개</option>
+                                    <option value="program_intro">프로그램</option>
+                                </select>
+                            </div>
+                            <div class="col" style="margin-top: 10px;">
+                                <input type="text" name="q" value="" class="form-control form-control-sm"
+                                       style="width: 15em;" placeholder="검색어를 입력해주세요">
+                            </div>
+                            <div class="col" style="margin-top: 10px; margin-right: 3rem">
+                                <button class="btn btn-sm btn-secondary" type="submit" id="search_btn">검색</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="my-5"></div>
+            <div style="display: flex;">
+                <a href="{% url 'trainerapp:create' %}" style="color: white; background-color: #1f75d9;
+                    padding:8px 15px 8px 15px; border-radius: 2rem; margin-left: 2rem">
+                    트레이너 등록</a>
+            </div>
+        </div>
+
+
+        <div style="display: flex; justify-content: center; margin-top:3rem">
+            {% if is_paginated %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?type={{ type }}&q={{ q }}&page={{ page_obj.previous_page_number }}"
+                               tabindex="-1">이전</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">이전</a>
+                        </li>
+                    {% endif %}
+
+                    {% for page in page_range %}
+                        <li class="page-item {% if page == page_obj.number %} activate {% endif %}">
+                            <a class="page-link" href="?type={{ type }}&q={{ q }}&page={{ page }}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?type={{ type }}&q={{ q }}&page={{ page_obj.next_page_number }}">다음</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">다음</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    <div class="my-5"></div>
 {% endblock %}

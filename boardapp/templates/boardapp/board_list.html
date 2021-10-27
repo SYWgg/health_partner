@@ -58,7 +58,7 @@
                 {% for board in board_list %}
                     <tr class="text-center" style="cursor: pointer;"
                         onclick="location.href='{% url "boardapp:detail" pk=board.pk %}'">
-                        <td style="width: 50%; font-weight: 600;" class="text-end">{{ board.title }}</td>
+                        <td style="width: 50%; font-weight: 600;" class="text-center">{{ board.title }}</td>
                         <td style="font-weight: 500;">{{ board.writer.profile.nickname }}</td>
                         <td style="font-weight: 500;">{{ board.created_at | date:'Y. m. d' }}</td>
                         <td style="font-weight: 500;">{{ board.hits }}</td>
@@ -139,80 +139,3 @@
         </div>
     </div>
 {% endblock %}
-
-{##}
-{#{% block content %}#}
-{#    {% if q %}#}
-{#        <h5>'{{ q }}' 검색 결과입니다.</h5>#}
-{#    {% endif %}#}
-{#    <table>#}
-{#        <thead>#}
-{#        <tr class="text-center">#}
-{#            <th>번호</th>#}
-{#            <th>제목</th>#}
-{#            <th>작성자</th>#}
-{#            <th>등록일</th>#}
-{#            <th>조회수</th>#}
-{#        </tr>#}
-{#        </thead>#}
-{#        <tbody>#}
-{#        {% if board_list %}#}
-{#            {% for board in board_list %}#}
-{#                <tr class="text-center">#}
-{#                    <td>{{ board.id }}</td>#}
-{#                    <td>{{ board.title|truncatechars:30 }}</td>#}
-{#                    <td>{{ board.writer }}</td>#}
-{#                    <td>{{ board.created_at|date:'Y. m. d' }}</td>#}
-{#                    <td>{{ board.hits }}</td>#}
-{#                </tr>#}
-{#            {% endfor %}#}
-{#        {% else %}#}
-{#            {% if q %}          <!-- 검색어가 있어 q가 context로 넘어오면 검색결과가 없음 -->#}
-{#                <tr class="text-center">#}
-{#                    <td colspan="5">#}
-{#                        일치하는 검색 결과가 없습니다.#}
-{#                    </td>#}
-{#                </tr>#}
-{#            {% else %}          <!-- q가 없으면 검색어가 아니며 게시글이 존재하지 않으므로 게시글 미작성 -->#}
-{#                <tr class="text-center">#}
-{#                    <td colspan="5">#}
-{#                        작성된 게시글이 없습니다.#}
-{#                    </td>#}
-{#                </tr>#}
-{#            {% endif %}#}
-{#        {% endif %}#}
-{#        </tbody>#}
-{#    </table>#}
-{##}
-{#    {% if is_paginated %}#}
-{#        <ul class="pagination">#}
-{#            {% if page_obj.has_previous %}#}
-{#                <li class="page-item">#}
-{#                    <a class="page-link" href="?type={{ type }}&q={{ q }}&page={{ page_obj.previous_page_number }}"#}
-{#                       tabindex="-1">이전</a>#}
-{#                </li>#}
-{#            {% else %}#}
-{#                <li class="page-item disabled">#}
-{#                    <a class="page-link" href="#" tabindex="-1">이전</a>#}
-{#                </li>#}
-{#            {% endif %}#}
-{##}
-{#            {% for page in page_range %}#}
-{#                <li class="page-item {% if page == page_obj.number %} activate {% endif %}">#}
-{#                    <a class="page-link" href="?type={{ type }}&q={{ q }}&page={{ page }}">{{ page }}</a>#}
-{#                </li>#}
-{#            {% endfor %}#}
-{##}
-{#            {% if page_obj.has_next %}#}
-{#                <li class="page-item">#}
-{#                    <a class="page-link"#}
-{#                       href="?type={{ type }}&q={{ q }}&page={{ page_obj.next_page_number }}">다음</a>#}
-{#                </li>#}
-{#            {% else %}#}
-{#                <li class="page-item disabled">#}
-{#                    <a class="page-link" href="#">다음</a>#}
-{#                </li>#}
-{#            {% endif %}#}
-{#        </ul>#}
-{#    {% endif %}#}
-{#{% endblock %}#}

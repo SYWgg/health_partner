@@ -13,7 +13,7 @@
 
                         <span style="display: none">{{ target_board.update_counter }}</span>
                         <!--작성자, 조회수-->
-                        <div><br><br>
+                        <div><br><br><br>
                             <div style="float:left;">작성자 : {{ target_board.writer.profile.nickname }}</div>
 
                             <span style="float:right;">조회수 : {{ target_board.hits }}</span>
@@ -53,7 +53,6 @@
             </div>
         </div>
     </div>
-    <hr>
     <div style="margin: 1rem">
         {% for comment in target_board.comment.all %}
             {% include 'commentapp/comment_detail.html' with comment=comment %}
