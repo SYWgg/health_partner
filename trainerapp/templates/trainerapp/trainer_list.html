@@ -2,28 +2,25 @@
 {% load bootstrap4 %}
 
 {% block content %}
-    <article>
+    <div class="container">
         <div class="my-5"></div>
 
         <!-- heading -->
-        <div style="text-align: center">
+        <div style="text-align: center; margin: 3rem">
             <h2><strong>트레이너 리스트</strong></h2>
-
         </div>
-        <div class="my-4"></div>
 
         <!-- cards -->
         {% if trainer_list %}
-            <div class="container" style=" display: flex; flex-grow: 0; margin: 2px;">
+            <div class="container" style=" flex-flow: row wrap; text-align: left; max-width: 100%">
                 {% for trainer in trainer_list %}
-                    <a href="{% url 'trainerapp:detail' pk=trainer.pk %}">
-                        <div class="card" style="margin:2rem;">
+                    <a style="display: inline-block" href="{% url 'trainerapp:detail' pk=trainer.pk %}">
+                        <div class="item" style="margin:36px; border-radius: 1rem">
                             {% include 'snippets/card.html' with trainer=trainer %}
-                            <div class="card-text" style="text-align: center; background-color: lightgray">
+                            <div class="item" style="text-align: center; background-color: lightgray">
                                 {{ trainer.name }}
                             </div>
                         </div>
-
                     </a>
                 {% endfor %}
             </div>
@@ -52,32 +49,24 @@
                                 <input type="text" name="q" value="" class="form-control form-control-sm"
                                        style="width: 15em;" placeholder="검색어를 입력해주세요">
                             </div>
-                            <div class="col" style="margin-top: 10px;">
+                            <div class="col" style="margin-top: 10px; margin-right: 3rem">
                                 <button class="btn btn-sm btn-secondary" type="submit" id="search_btn">검색</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
-            <div>
-                <div style="margin-top: 30px;">
-                    <a href="{% url 'boardapp:create' %}" style="color: white; background-color: #1f75d9;
-                    padding:8px 15px 8px 15px; border-radius: 2rem; margin: 3rem;">
-                        글쓰기</a>
 
-                </div>
+            <div class="my-5"></div>
+            <div style="display: flex;">
+                <a href="{% url 'trainerapp:create' %}" style="color: white; background-color: #1f75d9;
+                    padding:8px 15px 8px 15px; border-radius: 2rem; margin-left: 2rem">
+                    트레이너 등록</a>
             </div>
         </div>
 
 
-        <div style="margin-top: 30px; text-align: center">
-            <a href="{% url 'trainerapp:create' %}" style="color: white; background-color: #1f75d9;
-                    padding:8px 15px 8px 15px; border-radius: 2rem; margin: 3rem;">
-                트레이너 등록</a>
-        </div>
-        <div class="my-5"></div>
-
-        <div style="display: flex; justify-content: center">
+        <div style="display: flex; justify-content: center; margin-top:3rem">
             {% if is_paginated %}
                 <ul class="pagination">
                     {% if page_obj.has_previous %}
@@ -111,10 +100,6 @@
                 </ul>
             {% endif %}
         </div>
-        </div>
-        <div class="my-5"></div>
-        <div class="container">
-        </div>
-    </article>
-
+    </div>
+    <div class="my-5"></div>
 {% endblock %}

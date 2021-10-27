@@ -65,7 +65,7 @@ class TrainerListView(ListView):
     model = Trainer
     context_object_name = 'trainer_list'
     template_name = 'trainerapp/trainer_list.html'
-    paginate_by = 12
+    paginate_by = 8
 
     def get_queryset(self):
 
@@ -74,21 +74,21 @@ class TrainerListView(ListView):
         trainer_list = Trainer.objects.order_by('-id')
 
         if search_keyword:
-            if len(search_keyword) > 1:
+            if len(search_keyword) >= 1:
                 if search_type == 'all':
                     search_trainer_list = trainer_list.filter(
                         Q(name__icontains=search_keyword) | Q(trainer_intro__icontains=search_keyword) | Q(
                             program_intro__icontains=search_keyword))
                 elif search_type == 'name':
                     search_trainer_list = trainer_list.filter(name__icontains=search_keyword)
-                elif search_type == 'trainer_info':
+                elif search_type == 'trainer_intro':
                     search_trainer_list = trainer_list.filter(trainer_intro__icontains=search_keyword)
-                elif search_type == 'program_info':
+                elif search_type == 'program_intro':
                     search_trainer_list = trainer_list.filter(program_intro__icontains=search_keyword)
 
                 return search_trainer_list
             else:
-                messages.error(self.request, '검색어는 2글자 이상 입력해주세요.')
+                messages.error(self.request, '검색어는 1글자 이상 입력해주세요.')
         return trainer_list
 
     def get_context_data(self, **kwargs):
