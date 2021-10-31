@@ -12,6 +12,7 @@ from django.views.generic import CreateView, FormView, DetailView
 from accountapp.decorators import logout_message_required, login_message_required
 from accountapp.forms import TrainerRegisterForm, LoginForm, RegisterForm, CustomPasswordChangeForm, CheckPasswordForm
 from accountapp.models import User
+from trainerapp.models import Trainer
 
 
 @method_decorator(logout_message_required, name='dispatch')
@@ -141,7 +142,7 @@ class MypageView(DetailView):
     context_object_name = 'target_user'
     template_name = 'accountapp/mypage.html'
 
-    # def get_context_data(self, **kwargs):
-    #    object_list = Trainer.objects.filter(writer=self.get_object())
-    #    return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
+    def get_context_data(self, **kwargs):
+       object_list = Trainer.objects.filter(trainer=self.get_object())
+       return super().get_context_data(object_list=object_list, **kwargs)
 

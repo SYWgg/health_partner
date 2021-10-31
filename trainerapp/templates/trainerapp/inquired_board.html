@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <h1 style="text-align: center">문의내역</h1>
+    <div class="container">
+        <div class="row-mt-5">
+            <div class="col-12">
+                <div class="card" style="width: 100%; background-color: ghostwhite; border-color: black">
+                    <div style="text-align: center">
+                        <div class="card-body" style="min-height: 400px; color:black;">
+                            <div class="text-center" style="height: min-content">
+                                {% for comment in user.comment.all %}
+                                    {% include 'commentapp/comment_detail.html' with comment=comment %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin: 1rem">
+            {% include 'commentapp/comment_create.html' with user=user.pk %}
+        </div>
+    </div>
+{% endblock %}
