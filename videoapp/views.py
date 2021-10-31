@@ -1,15 +1,50 @@
 from django.contrib import messages
 from django.db.models import Q
 
-from django.views.generic import DetailView, ListView
+# Create your views here.
+from django.http import HttpResponse
+from django.views.generic import ListView, DetailView
 
 from videoapp.models import Video
 
+import csv
+
+data = None
+file_dir = 'static/'
+
+def read_data(youtube):
+    with open(file_dir + f'{youtube}.csv', 'r') as csvfile:
+        reader = csv.reader(csvfile)
+        global data
+        data = list(reader)
+    return
+
+def footer(youtube, Video, bulk_list):
+    Video.objects.bulk_create(bulk_list)
+
+    with open(file_dir + f'{youtube}.csv', 'w') as csvfile:
+        writer = csv.writer(csvfile)
+    return
+
+def add_youtube(request):
+    read_data('youtube')
+    if not data:
+        return HttpResponse('Nothing to update')
+
+    arr = []
+    for row in data:
+        arr.append(Video(
+            title=row[0],
+            url=row[1],
+            tags=row[2]
+        ))
+    footer('youtube', Video, arr)
+    return HttpResponse('Youtube table update')
 
 class VideoListView(ListView):
     model = Video
     context_object_name = 'video_list'
-    template_name = 'video_list.html'
+    template_name = 'videoapp/video_list.html'
     paginate_by = 8
 
     def get_queryset(self):
@@ -22,11 +57,9 @@ class VideoListView(ListView):
             if len(search_keyword) >= 1:
                 if search_type == 'all':
                     search_video_list = video_list.filter(
-                        Q(title__icontains=search_keyword) | Q(keyword__icontains=search_keyword))
+                        Q(title__icontains=search_keyword))
                 elif search_type == 'title':
                     search_video_list = video_list.filter(title__icontains=search_keyword)
-                elif search_type == 'keyword':
-                    search_video_list = video_list.filter(keyword__icontains=search_keyword)
 
                 return search_video_list
             else:
@@ -62,4 +95,4 @@ class VideoListView(ListView):
 class VideoDetailView(DetailView):
     model = Video
     context_object_name = 'target_video'
-    template_name = ''
+    template_name = 'videoapp/video_detail.html'

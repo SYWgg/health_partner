@@ -9,7 +9,7 @@
     <div class="container">
         <div class="card mb-3">
             <img src="{{ target_trainer.img.url }}"
-                 style="height: 13rem; width: 13rem; box-shadow : 2px 2px 5px #ccc; border-radius: 20rem; margin: 3rem; object-fit: cover;"
+                 style="height: 13rem; width: 13rem; box-shadow : 2px 2px 5px #ccc; border-radius: 20rem; margin: 3rem; object-fit:contain;"
                  alt="{{ target_trainer.name }}"/>
             <div class="card-body">
                 <h3 class="card-title" style="text-align: left; margin:2rem;">{{ target_trainer.name }} 트레이너 </h3>
@@ -27,21 +27,24 @@
                 <hr>
                 <br>
                 <p class="card-text">
-                <div class="card" style=" text-align: center;border: 1px solid black; background-color:white"><h3>가격표</h3> <br><br>
+                <div class="card" style=" text-align: center;border: 1px solid black; background-color:white"><h3>
+                    가격표</h3> <br><br>
                     <h4>{{ target_trainer.charge }}</h4></div>
                 </p>
                 <br>
                 <hr>
                 <br>
                 <p class="card-text">
-                <div class="card" style=" text-align: center;border: 1px solid black; background-color:white"><h3>트레이닝 시간</h3> <br><br>
+                <div class="card" style=" text-align: center;border: 1px solid black; background-color:white"><h3>트레이닝
+                    시간</h3> <br><br>
                     <h4>{{ target_trainer.training_time }}</h4></div>
                 </p>
                 <br>
                 <hr>
                 <br>
                 <p class="card-text">
-                <div class="card" style=" text-align: center;border: 1px solid black; background-color:white"><h3>트레이닝 경력</h3> <br><br>
+                <div class="card" style=" text-align: center;border: 1px solid black; background-color:white"><h3>트레이너
+                    경력</h3> <br><br>
                     <h4>{{ target_trainer.career }}</h4></div>
                 </p>
             </div>
@@ -64,7 +67,17 @@
         </form>
         <div class="align-items-center justify-center"
              style="height: 100px;">
-            <button type="button" class="btn btn-primary btn-rounded"><h5>트레이너 등록</h5></button>
+            {% if user.is_authenticated %}
+                <a href="#"
+                   class="btn btn-primary btn-rounded" style="float: left; margin: 16px;">
+                    <h5>트레이너 등록</h5>
+                </a>
+
+                <a href="{% url 'trainerapp:board' pk=target_trainer.pk %}"
+                   class="btn btn-primary btn-rounded" style="float: left; margin: 16px;">
+                    <h5>문의하기</h5>
+                </a>
+            {% endif %}
         </div>
     </div>
 

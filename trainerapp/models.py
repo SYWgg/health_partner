@@ -1,6 +1,4 @@
-
 from django.db import models
-
 
 # Create your models here.
 from accountapp.models import User
@@ -18,3 +16,8 @@ class Trainer(models.Model):
     career = models.TextField(null=False, verbose_name="트레이너 경력")
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
+
+
+class RegisteredUser(models.Model):
+    trainer = models.OneToOneField(Trainer, on_delete=models.CASCADE, null=True, blank=True, verbose_name="등록된 트레이너")
+    user = models.ManyToManyField(User, verbose_name="등록한 일반인")

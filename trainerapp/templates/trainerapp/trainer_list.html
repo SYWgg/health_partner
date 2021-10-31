@@ -18,7 +18,7 @@
                         <div class="item" style="margin:36px; border-radius: 1rem">
                             {% include 'snippets/card.html' with trainer=trainer %}
                             <div class="item" style="text-align: center; background-color: lightgray">
-                                {{ trainer.name }}
+                                트레이너<h5>{{ trainer.name }}</h5>
                             </div>
                         </div>
                     </a>
@@ -61,7 +61,7 @@
             <div style="display: flex;">
                 <a href="{% url 'trainerapp:create' %}" style="color: white; background-color: #1f75d9;
                     padding:8px 15px 8px 15px; border-radius: 2rem; margin-left: 2rem">
-                    트레이너 등록</a>
+                    프로필 생성</a>
             </div>
         </div>
 

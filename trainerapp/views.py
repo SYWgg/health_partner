@@ -1,14 +1,16 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.shortcuts import render
+
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
+from django.views.generic.edit import FormMixin
 
 from accountapp.decorators import trainer_required
+from commentapp.forms import CommentCreationForm
 from trainerapp.decorators import trainer_ownership_required
 from trainerapp.forms import TrainerCreationForm
 from trainerapp.models import Trainer
@@ -116,3 +118,8 @@ class TrainerListView(ListView):
         context['type'] = search_type
 
         return context
+
+class InquiredBoardView(DetailView, FormMixin):
+    model = Trainer
+    template_name = 'trainerapp/inquired_board.html'
+    form_class = CommentCreationForm
