@@ -9,7 +9,7 @@ from videoapp.models import Video
 class VideoListView(ListView):
     model = Video
     context_object_name = 'video_list'
-    template_name = ''
+    template_name = 'video_list.html'
     paginate_by = 8
 
     def get_queryset(self):

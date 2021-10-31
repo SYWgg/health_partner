@@ -1,0 +1,38 @@
+<div class="col">
+    <div class="card">
+        <div
+            class="bg-image hover-overlay ripple"
+            data-mdb-ripple-color="light"
+        >
+            <div class="bg-image">
+                <div class="ratio ratio-16x9">
+                    <iframe
+                        src="{{ video.url }}"
+                        title="YouTube video"
+                        allowfullscreen
+                        data-title="{{ video.title }}"
+                        data-views="{{ video.views }}"
+                        data-tag="{{ video.tag }}"
+                    ></iframe>
+                </div>
+                <a href="#!"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#trainer_detail_1">
+                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <p class="text-white mb-0">클릭하여 동영상을 시청하세요.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ video.title }}
+                </h5>
+                <p class="card-text">
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
