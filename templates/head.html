@@ -30,6 +30,12 @@
       rel="stylesheet"
     />
 
+    <!-- AnimateCSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />  
+
     {#  GOOGLE FONTS LINK  #}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,6 +47,6 @@
     {# DEFAULT CSS LINK #}
     <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
 
-
+    {% block extrahead %} {% endblock %}
 
 </head>

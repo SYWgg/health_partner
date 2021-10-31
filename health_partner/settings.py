@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
+    'embed_video',
     'accountapp.apps.AccountappConfig',
     'profileapp.apps.ProfileappConfig',
     'trainerapp.apps.TrainerappConfig',

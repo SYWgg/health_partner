@@ -1,8 +1,100 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+{% load embed_video_tags %}
 
 {% block content %}
-    <div class="container" style="height: 40rem">
+    <div class="container">
+        <div class="my-5"></div>
 
+        <!-- heading -->
+        <div class="container" style="text-align: center">
+            <h2><strong>헬스 관련 영상</strong></h2>
+        </div>
+        <div class="my-4"></div>
+
+        <!-- cards -->
+        {% if video_list %}
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for video in video_list %}
+                        {% video video.url as youtube %}
+                            {% include 'snippets/video_card.html' with video=video %}
+                        {% endvideo %}
+                    {% endfor %}
+                </div>
+            </div>
+            </div>
+        {% else %}
+            <div style="text-align: center">
+                <h1>영상 추천이 준비되지 않았습니다.</h1>
+            </div>
+        {% endif %}
+
+
+
+    <div style="margin-top: 30px;">
+        <form action="" method="GET">
+            <div class="col">
+                <div style="float: right;" class="form-row">
+                    <div class="form-row">
+                        <div class="col" style="margin-top: 10px;">
+                            <select name="type" style="width: 6em;" class="custom-select custom-select-sm">
+                                <option value="all">전체</option>
+                                <option value="title">제목</option>
+                            </select>
+                        </div>
+                        <div class="col" style="margin-top: 10px;">
+                            <input type="text" name="q" value="" class="form-control form-control-sm"
+                                   style="width: 15em;" placeholder="검색어를 입력해주세요">
+                        </div>
+                        <div class="col" style="margin-top: 10px;">
+                            <button class="btn btn-sm btn-secondary" type="submit" id="search_btn">검색</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
+    <br><br><br>
+
+    <div style="display: flex; justify-content: center; margin-top:3rem">
+        {% if is_paginated %}
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?type={{ type }}&q={{ q }}&page={{ page_obj.previous_page_number }}"
+                           tabindex="-1">이전</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">이전</a>
+                    </li>
+                {% endif %}
+
+                {% for page in page_range %}
+                    <li class="page-item {% if page == page_obj.number %} activate {% endif %}">
+                        <a class="page-link" href="?type={{ type }}&q={{ q }}&page={{ page }}">{{ page }}</a>
+                    </li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?type={{ type }}&q={{ q }}&page={{ page_obj.next_page_number }}">다음</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">다음</a>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+    </div>
+    <div class="my-5"></div>
+{% endblock %}
+
+{% block custom_script %}
+    <script type="module" src="/static/js/video_list.mjs"></script>
 {% endblock %}
