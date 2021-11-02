@@ -35,9 +35,8 @@ class TrainerCreateView(CreateView):
         return reverse('trainerapp:detail', kwargs={'pk': self.object.pk})
 
 
-class TrainerDetailView(DetailView, FormMixin):
+class TrainerDetailView(DetailView):
     model = Trainer
-    form_class = TrainerCommentCreationForm
     context_object_name = 'target_trainer'
     template_name = 'trainerapp/trainer_detail.html'
 
@@ -122,5 +121,6 @@ class TrainerListView(ListView):
 
 class InquiredBoardView(DetailView, FormMixin):
     model = Trainer
+    context_object_name = 'target_trainer'
     template_name = 'trainerapp/inquired_board.html'
     form_class = TrainerCommentCreationForm

@@ -73,24 +73,13 @@
                     <h5>트레이너 등록</h5>
                 </a>
 
-{#                <a href="{% url 'trainerapp:board' pk=target_trainer.pk %}"#}
-{#                   class="btn btn-primary btn-rounded" style="float: left; margin: 16px;">#}
-{#                    <h5>문의하기</h5>#}
-{#                </a>#}
+                <a href="{% url 'trainerapp:board' pk=target_trainer.pk %}"
+                   class="btn btn-primary btn-rounded" style="float: left; margin: 16px;">
+                    <h5>문의하기</h5>
+                </a>
             {% endif %}
         </div>
     </div>
-    <div style="margin: 1rem">
-        {% for trainercomment in target_trainer.trainer_comment.all %}
-            {% include 'trainercommentapp/comment_detail.html' with trainercomment=trainercomment %}
-        {% endfor %}
 
-
-        {% include 'trainercommentapp/comment_create.html' with trainer=target_trainer %}
-    </div>
-
-    <div class="my-5"></div>
-    <div class="container">
-        <hr class="my-2"/>
-    </div>
+    <div class="mb-7"></div>
 {% endblock %}

@@ -25,7 +25,7 @@ class TrainerCommentCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('trainerapp:detail', kwargs={'pk': self.object.trainer.pk})
+        return reverse('trainerapp:board', kwargs={'pk': self.object.trainer.pk})
 
 
 
@@ -39,4 +39,4 @@ class TrainerCommentDeleteView(DeleteView):
     template_name = 'trainercommentapp/comment_delete.html'
 
     def get_success_url(self):
-        return reverse('trainerapp:detail', kwargs={'pk': self.object.trainer.pk})
+        return reverse('trainerapp:board', kwargs={'pk': self.object.trainer.pk})
