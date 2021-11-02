@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'embed_video',
+    'channels',
     'accountapp.apps.AccountappConfig',
     'profileapp.apps.ProfileappConfig',
     'trainerapp.apps.TrainerappConfig',
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'commentapp.apps.CommentappConfig',
     'videoapp.apps.VideoappConfig',
     'trainercommentapp.apps.TrainercommentappConfig',
+    'chatapp.apps.ChatappConfig',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +149,21 @@ AUTH_USER_MODEL = "accountapp.User"       # 커스텀 인증 모델
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+ASGI_APPLICATION = 'health_partner.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+
+# 후에 배포시 ip주소와 포트를 입력하여 연결
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [("127.0.0.1", 6379)],
+#         },
+#     },
+# }
