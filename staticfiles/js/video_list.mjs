@@ -1,3 +1,4 @@
+console.log("wpqkf")
 let cards = document.querySelectorAll("div.ratio");
 let masks = document.querySelectorAll("div.mask")
 let modalBody = document.querySelector("div.modal-body");
@@ -21,6 +22,9 @@ cards.forEach((card, index) => {
 
         // 제목, 조회수 등 처리
         let iframeNode = ratioCloneNode.firstChild;
+
+        console.log(iframeNode)
+
         let videoDetailElement = document.createElement("div");
         let titleElement = document.createTextElement(iframeNode.dataset.title);
         let viewsElement = documnet.createTextElement("조회수 " + iframeNode.dataset.views + "회");

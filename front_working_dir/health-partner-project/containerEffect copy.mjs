@@ -38,7 +38,3 @@ console.log("end");
 function sleep(ms) {
     return new Promise((r) => setTimeout(r, ms));
 }
-
-// container = document.querySelector("div.container");
-// newDiv = document.createElement("div");
-// newDiv.setAttribute("class", "animate__animated animate__fadeIn");
