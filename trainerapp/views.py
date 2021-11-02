@@ -13,7 +13,8 @@ from accountapp.decorators import trainer_required
 from commentapp.forms import CommentCreationForm
 from trainerapp.decorators import trainer_ownership_required
 from trainerapp.forms import TrainerCreationForm
-from trainerapp.models import Trainer
+from trainerapp.models import Trainer, RegisteredUser
+from trainercommentapp.forms import TrainerCommentCreationForm
 
 
 @method_decorator(login_required, 'get')
@@ -38,7 +39,6 @@ class TrainerDetailView(DetailView):
     model = Trainer
     context_object_name = 'target_trainer'
     template_name = 'trainerapp/trainer_detail.html'
-
 
 @method_decorator(trainer_ownership_required, 'get')
 @method_decorator(trainer_ownership_required, 'post')
@@ -121,5 +121,6 @@ class TrainerListView(ListView):
 
 class InquiredBoardView(DetailView, FormMixin):
     model = Trainer
+    context_object_name = 'target_trainer'
     template_name = 'trainerapp/inquired_board.html'
-    form_class = CommentCreationForm
+    form_class = TrainerCommentCreationForm

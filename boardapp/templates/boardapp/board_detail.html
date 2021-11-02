@@ -3,38 +3,38 @@
 
 {% block content %}
     <div class="container">
-    <div class="row-mt-5">
-        <div class="col-12">
-            <div class="card" style="width: 100%; background-color: ghostwhite">
-                <div style="text-align: center">
-                    <div class="card-header">
-                        <strong style="font-size: 2rem; float:left;">{{ target_board.title }}</strong>
-                        <span style="float:right;">{{ target_board.created_at|date:'Y.m.d. H:i' }}</span>
+        <div class="row-mt-5">
+            <div class="col-12">
+                <div class="card" style="width: 100%; background-color: ghostwhite">
+                    <div style="text-align: center">
+                        <div class="card-header">
+                            <strong style="font-size: 2rem; float:left;">{{ target_board.title }}</strong>
+                            <span style="float:right;">{{ target_board.created_at|date:'Y.m.d. H:i' }}</span>
 
-                        <span style="display: none">{{ target_board.update_counter }}</span>
-                        <!--작성자, 조회수-->
-                        <div><br><br><br>
-                            <div style="float:left;">작성자 : {{ target_board.writer.profile.nickname }}</div>
+                            <span style="display: none">{{ target_board.update_counter }}</span>
+                            <!--작성자, 조회수-->
+                            <div><br><br><br>
+                                <div style="float:left;">작성자 : {{ target_board.writer.profile.nickname }}</div>
 
-                            <span style="float:right;">조회수 : {{ target_board.hits }}</span>
-                        </div>
-                        <br>
-                    </div>
-                    <!--내용-->
-                    <div class="card-body" style="min-height: 400px; color:black;">
-                        <div class="text-center" style="height: min-content">
-                            <div>
-                                {% if target_board.image %}
-                                    <img style="width:40%; border-radius: 2rem; margin: 2rem 0;"
-                                         src="{{ target_board.image.url }}" alt="">
-                                {% endif %}
+                                <span style="float:right;">조회수 : {{ target_board.hits }}</span>
                             </div>
-                            <div style="text-align: left;">
-                                {{ target_board.content | safe }}
+                            <br>
+                        </div>
+                        <!--내용-->
+                        <div class="card-body" style="min-height: 400px; color:black;">
+                            <div class="text-center" style="height: min-content">
+                                <div>
+                                    {% if target_board.image %}
+                                        <img style="width:40%; border-radius: 2rem; margin: 2rem 0;"
+                                             src="{{ target_board.image.url }}" alt="">
+                                    {% endif %}
+                                </div>
+                                <div style="text-align: left;">
+                                    {{ target_board.content | safe }}
+                                </div>
                             </div>
                         </div>
                     </div>
-
                     <hr>
 
                     <form>
@@ -61,7 +61,6 @@
 
         {% include 'commentapp/comment_create.html' with board=target_board %}
     </div>
-
 
 
 {% endblock %}

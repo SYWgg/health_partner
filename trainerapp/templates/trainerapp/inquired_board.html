@@ -10,8 +10,8 @@
                     <div style="text-align: center">
                         <div class="card-body" style="min-height: 400px; color:black;">
                             <div class="text-center" style="height: min-content">
-                                {% for comment in user.comment.all %}
-                                    {% include 'commentapp/comment_detail.html' with comment=comment %}
+                                {% for trainercomment in target_trainer.trainer_comment.all %}
+                                    {% include 'trainercommentapp/comment_detail.html' with trainercomment=trainercomment %}
                                 {% endfor %}
                             </div>
                         </div>
@@ -19,8 +19,8 @@
                 </div>
             </div>
         </div>
-        <div style="margin: 1rem">
-            {% include 'commentapp/comment_create.html' with user=user.pk %}
-        </div>
+    </div>
+    <div style="margin: 1rem">
+        {% include 'trainercommentapp/comment_create.html' with trainer=target_trainer %}
     </div>
 {% endblock %}

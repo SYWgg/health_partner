@@ -1,0 +1,24 @@
+
+
+
+<div style="border: 1px solid; text-align: left; padding: 4%; margin: 1rem 0;
+border-radius: 1rem; border-color: #bbb">
+    <div>
+        <strong>
+            {{ trainercomment.member.profile.nickname }}
+        </strong>
+        &nbsp&nbsp&nbsp
+        <span style="font-size: 12px">{{ trainercomment.created_at }}</span>
+    </div>
+    <div>
+        {{ trainercomment.content }}
+    </div>
+    {% if trainercomment.writer == user %}
+    <div style="text-align: right">
+        <a href="{% url 'commentapp:delete' pk=trainercomment.pk %}"
+           class="btn btn-danger btn-sm rounded-pill mt-2">
+            댓글삭제
+        </a>
+    </div>
+    {% endif %}
+</div>
