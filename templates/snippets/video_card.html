@@ -6,13 +6,12 @@
         >
             <div class="bg-image">
                 <div class="ratio ratio-16x9">
-
-                        <iframe class="embed-responsive-item" src="{{ youtube.url }}"
-                                frameborder="0" allowfullscreen
-                                data-title="{{ video.title }}"
-                                data-views="{{ video.views }}"
-                                data-tag="{{ video.tag }}"
-                        ></iframe>
+                    <iframe class="embed-responsive-item" src="{{ youtube.url }}"
+                            frameborder="0" allowfullscreen
+                            data-title="{{ video.title }}"
+                            data-views="{{ video.hits }}"
+                            data-tag="{{ video.tag }}"
+                    ><span style="display: none">"{{ video.update_counter }}"</span></iframe>
 
                 </div>
                 <a href="#!"

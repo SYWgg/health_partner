@@ -71,30 +71,15 @@
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
                                             class="bi bi-collection"></i></div>
                                     <h2 class="fs-4 fw-bold">등록한 트레이너</h2>
-                                    <a href="{% url 'trainerapp:board' pk=object.pk %}"
-                                       class="btn btn-primary btn-rounded" style="text-align:center ; margin: 16px;">
-                                        <h5>1:1 문의하기</h5>
-                                    </a>
                                 </div>
                             </div>
                         </a>
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-3 mb-5">
-                            <a href="">
-                                <div class="card bg-light border-0 h-100">
-                                    <div class="card-body text-center">
-                                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-4"><i
-                                                class="bi bi-cloud-download"></i></div>
-                                        <h2 class="fs-4 fw-bold" style="font-size: 1.5rem">개인 유형 검사</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
 
-                        <div class="col-lg-3 mb-5">
-                            <a href="">
+                        <div class="col-lg-4 mb-5">
+                            <a href="{% url 'chatapp:main_view' %}">
                                 <div class="card bg-light border-0 h-100">
                                     <div class="card-body text-center">
                                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-4"><i
@@ -105,8 +90,8 @@
                             </a>
                         </div>
 
-                        <div class="col-lg-3 mb-5">
-                            <a href="">
+                        <div class="col-lg-4 mb-5">
+                            <a href="{% url 'boardapp:list' %}">
                                 <div class="card bg-light border-0 h-100">
                                     <div class="card-body text-center ">
                                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-4"><i
@@ -117,7 +102,7 @@
                             </a>
                         </div>
 
-                        <div class="col-lg-3 mb-5">
+                        <div class="col-lg-4 mb-5">
                             {% if target_user == user %}
 
                                 <div class="card bg-light border-0 h-100">
