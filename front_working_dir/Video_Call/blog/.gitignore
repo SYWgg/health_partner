@@ -2,3 +2,4 @@
 /webrtc-web-master
 .node_modules
 /node_modules
+./node_modules
