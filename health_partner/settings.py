@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'embed_video',
+    'channels',
     'accountapp.apps.AccountappConfig',
     'profileapp.apps.ProfileappConfig',
     'trainerapp.apps.TrainerappConfig',
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'commentapp.apps.CommentappConfig',
     'videoapp.apps.VideoappConfig',
     'trainercommentapp.apps.TrainercommentappConfig',
+    'chatapp.apps.ChatappConfig',
 ]
 
 MIDDLEWARE = [
