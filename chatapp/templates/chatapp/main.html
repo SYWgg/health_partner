@@ -5,7 +5,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Django Channels WebRTC</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
 <body>
     <h3 id="label-username">USERNAME</h3>
@@ -15,7 +16,7 @@
 
     <div class="main-grid-container">
         <div id="video-container">
-            <div><video id="loacal-video" style="float: left;" autoplay playsinline></video></div>
+            <div><video id="local-video" style="float: left;" autoplay playsinline></video></div>
             <button id="btn-toggle-audio">Audio Mute</button>
             <button id="btn-toggle-video">Video Off</button>
         </div>
@@ -27,9 +28,11 @@
             </div>
 
             <div>
-               <input id="msg"><button id="btn-send-msg">Send Message</button>
+                <input id="msg"><button id="btn-send-msg">Send Message</button>
+                <button id="btn-share-screen">Share Screen</button>
             </div>
         </div>
     </div>
+0<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
