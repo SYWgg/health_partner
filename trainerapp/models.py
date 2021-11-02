@@ -5,7 +5,9 @@ from accountapp.models import User
 
 
 class Trainer(models.Model):
-    trainer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='트레이너')
+    trainer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='trainer', verbose_name='트레이너')
+    member = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user', null=True, blank=True,
+                             verbose_name='등록한 일반인')
 
     name = models.CharField(max_length=10, verbose_name="트레이너 이름")
     img = models.ImageField(upload_to='trainer/', null=False, verbose_name="트레이너 사진")
@@ -17,6 +19,8 @@ class Trainer(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
 
+    def __str__(self):
+        return self.name
 
 class RegisteredUser(models.Model):
     trainer = models.OneToOneField(Trainer, on_delete=models.CASCADE, null=True, blank=True, verbose_name="등록된 트레이너")
