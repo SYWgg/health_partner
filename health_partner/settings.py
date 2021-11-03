@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'embed_video',
     'channels',
+    'corsheaders',
     'accountapp.apps.AccountappConfig',
     'profileapp.apps.ProfileappConfig',
     'trainerapp.apps.TrainerappConfig',
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'health_partner.urls'
@@ -167,3 +169,27 @@ CHANNEL_LAYERS = {
 #         },
 #     },
 # }
+
+CORS_ORIGIN_ALLOW_ALL=True
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)

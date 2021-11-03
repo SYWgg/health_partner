@@ -144,6 +144,30 @@ var userMedia = navigator.mediaDevices.getUserMedia(constraints)
         console.log('Error accessing media devices.', error);
     });
 
+var btnSendMsg = document.querySelector('#btn-send-msg');
+var messageList = document.querySelector('#message-list');
+var messageInput = document.querySelector('#msg');
+
+btnSendMsg.addEventListener('click', sendMsgOnClick);
+
+function sendMsgOnClick(){
+    var message = messageInput.value;
+
+    var li = document.createElement('li')
+    li.appendChild(document.createTextNode('Me: ' + message));
+    messageList.appendChild(li);
+
+    var dataChannels = getDataChannels()
+
+    message = username + ': ' + message;
+
+    for(index in dataChannels){
+        dataChannels[index].send(message);
+    }
+
+    messageInput.value = '';
+}
+
 
 function  sendSignal(action, message){
     var jsonStr = JSON.stringify({
@@ -271,7 +295,6 @@ function addLocalTracks(peer){
     return;
 }
 
-var messageList = document.querySelector('#message-list')
 function dcOnMessage(event){
     var message = event.data;
 
@@ -312,4 +335,15 @@ function removeVideo(video){
     var videoWrapper = video.parentNode;
 
     videoWrapper().parentNode.removeChild(videoWrapper);
+}
+
+function getDataChannels(){
+    var dataChannels = [];
+
+    for(peerUsername in mapPeers){
+        var dataChannel = mapPeers[peerUsername][1];
+
+        dataChannels.push(dataChannel);
+    }
+    return dataChannels
 }
